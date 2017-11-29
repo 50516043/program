@@ -11,7 +11,7 @@ import pbl2017
 def receive_data(client_socket):#データ受信関数
   response_server = bytearray()#配列
   while True:
-    a =  client_socket.recv(1)
+    a =  client_socket.recv(1024)
     if len(a)<=0:
       break
     response_server.append(a[0])
@@ -32,8 +32,10 @@ def size_request_client(input_list,client_socket):
   
 def get_request_client(input_list,client_socket,token_str):
   getarg = pbl2017.genkey(token_str)
+  print(getarg)
   if (input_list[2] == 'ALL'):
     sentence = 'GET {} {} {}'.format(input_list[1],getarg,'ALL')
+    print(sentence)
     client_socket.send(sentence.encode())
     res_str = receive_data(client_socket)#データを受信
     #print(res_str + '(from server)')
@@ -69,7 +71,7 @@ def main():
   server_name = sys.argv[1]
   server_port = int(sys.argv[2])
   #filename = sys.argv[3]
-  token_str = "abcdeaaaaa"  #トークン
+  token_str = "abcde"  #トークン
   client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
   client_socket.connect((server_name, server_port))  # サーバのソケットに接続する
   
