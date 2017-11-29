@@ -11,12 +11,13 @@ import pbl2017
 def receive_data(client_socket):#データ受信関数
   response_server = bytearray()#配列
   while True:
-    a =  client_socket.recv(1024)
-    if len(a)<=0:
-      break
+    a =  client_socket.recv(1)
+    if len(a)==0:
+      continue
     response_server.append(a[0])
-
-  receive_str = response_server.decode()
+    if a == b'\n':
+      receive_str = response_server.decode()
+      break
   return receive_str
 
 def size_request_client(input_list,client_socket):
@@ -32,10 +33,8 @@ def size_request_client(input_list,client_socket):
   
 def get_request_client(input_list,client_socket,token_str):
   getarg = pbl2017.genkey(token_str)
-  print(getarg)
   if (input_list[2] == 'ALL'):
     sentence = 'GET {} {} {}'.format(input_list[1],getarg,'ALL')
-    print(sentence)
     client_socket.send(sentence.encode())
     res_str = receive_data(client_socket)#データを受信
     #print(res_str + '(from server)')
