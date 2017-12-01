@@ -48,7 +48,8 @@ def get_request_client(input_list,client_socket,token_str):#GETリクエスト
         sentence = 'GET {} {} {}'.format(input_list[1],getarg,'ALL')#GET filename token ALL/PARTIAL sNUM gNUM
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
-        res_str = receive_data(client_socket)#サーバーからの応答を受信
+        #res_str = receive_data(client_socket)#サーバーからの応答を受信
+        res_str = client_socket.recv(1024).decode()
         print('[FROM server]\n' + res_str)
         if(res_str.split()[0] == 'OK'):#OK
             ALL_file_data = receive_data(client_socket)#ファイルデータ受信
