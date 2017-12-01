@@ -12,6 +12,18 @@ import time
 
 server_port = 60623  ##ポート番号##
 
+def receive_data2(client_socket):#データ受信関数,改行で終了
+    response_server = bytearray()
+    while True:
+        a =  client_socket.recv(1)#1バイトずつ
+        if len(a)==0:
+            continue
+        response_server.append(a[0])
+        if a == b'\n':
+            break
+    receive_str = response_server.decode()
+    return receive_str
+
 def size_request_server(word_list,s):#SIZEリクエスト
     filename = word_list[1]
     try:
@@ -67,7 +79,9 @@ def rep_request_server(word_list,s,token_str):#REPリクエスト
     
 def interact_with_client(s):
     token_str = "abcde"
-    sentence = s.recv(1024).decode()#1回目のclientからのデータ受信SIZE,GET,REP...
+    #sentence = s.recv(1024).decode()#1回目のclientからのデータ受信SIZE,GET,REP...
+    tmp_sentence = receive_data2(s)
+    sentence = tmp_sentence.decode()
     print('受信:',end="")
     word_list = sentence.split()
     
