@@ -45,7 +45,7 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
 def get_request_client(input_list,client_socket,token_str):#GETリクエスト
     getarg = pbl2017.genkey(token_str)#トークン文字列から生成したダイジェスト文字列を代入
     if (input_list[2] == 'ALL'):#ALL
-        sentence = 'GET {} {} {}'.format(input_list[1],getarg,'ALL')#GET filename token ALL/PARTIAL sNUM gNUM
+        sentence = 'GET {} {} {}\n'.format(input_list[1],getarg,'ALL')#GET filename token ALL/PARTIAL sNUM gNUM
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
         #res_str = receive_data(client_socket)#サーバーからの応答を受信
@@ -61,7 +61,7 @@ def get_request_client(input_list,client_socket,token_str):#GETリクエスト
             print(res_str)
   
     elif (input_list[2] == 'PARTIAL'):#PARTIAL
-        sentence = 'GET {0} {1} PARTIAL {2} {3}'.format(input_list[1],getarg,input_list[3],input_list[4])
+        sentence = 'GET {0} {1} PARTIAL {2} {3}\n'.format(input_list[1],getarg,input_list[3],input_list[4])
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
         #res_str = receive_data(client_socket)#サーバーからの応答を受信
