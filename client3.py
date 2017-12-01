@@ -74,7 +74,7 @@ def get_request_client(input_list,client_socket,token_str):#GETリクエスト
         elif(res_str.split()[0] == 'NG'):
             print(res_str)
 def rep_request_client(input_list,client_socket,token_str):
-    sentence = 'REP {} {} {}'.format(input_list[1],token_str,pbl2017.repkey(token_str,'filedata.dat'))
+    sentence = 'REP {} {} {}\n'.format(input_list[1],token_str,pbl2017.repkey(token_str,'filedata.dat'))
     client_socket.send(sentence.encode())
     res_str = receive_data(client_socket)#データを受信
     #if(res_str.split()[0] == 'OK'):
