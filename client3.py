@@ -64,7 +64,8 @@ def get_request_client(input_list,client_socket,token_str):#GETリクエスト
         sentence = 'GET {0} {1} PARTIAL {2} {3}'.format(input_list[1],getarg,input_list[3],input_list[4])
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
-        res_str = receive_data(client_socket)#サーバーからの応答を受信
+        #res_str = receive_data(client_socket)#サーバーからの応答を受信
+        res_str = client_socket.recv(1024).decode()
         print('[FROM server]\n' + res_str)
         if(res_str.split()[0] == 'OK'):
             PARTIAL_file_data = receive_data(client_socket)
