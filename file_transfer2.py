@@ -16,15 +16,20 @@ def receive_data(client_socket):#データ受信関数,aの長さが0のとき�
         response_server.append(a[0])
     receive_str = response_server.decode()
     return receive_str
+
 def SEND_request_s(word_list,client_socket):
-    sentence = "SEND"
+    sentence = "SEND \n"
     client_socket.send(sentence.encode())
     #res_str = receive_data(client_socket)
     res_str = client_socket.recv(1024).decode()
+    res_str_list = res_str.split()
     print(res_str)
-    if res_str == "OK":
-        filedata = "Helllo,World!!!"
+    if res_str_list[0] == "OK":
+        print("SEND_FILE_DATA...",end='')
+        filedata = "Helllo,World!!!"   ####ファイル送信####
         client_socket.send(filedata.encode())
+        print('完了！')
+    
 def main():#main
     if len(sys.argv) < 2:
         sys.exit('Usage: python3 client3.py HostName PortNumber')

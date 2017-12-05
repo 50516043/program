@@ -9,7 +9,7 @@ import os.path
 import sys
 import time
 
-passlist = [pbl2,pbl4,pbl5]#経路リスト
+passlist = ['pbl2','pbl4','pbl5']#経路リスト
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 clienthost = 'pbl5'  ##クライアントホスト
 serverhost = 'pbl2'  ##サーバーホスト
@@ -27,24 +27,25 @@ def receive_data(client_socket):#データ受信関数,aの長さが0のとき�
 
 def SEND_request(word_list,s):#SEND,データを受け取る
     sentence = "OK \n"
-    print(sentence)
+    #print(sentence)
     s.send(sentence.encode())#応答OK
     
     ALL_file_data = receive_data(s)#data受信
-    print(ALL_file_data)
+    print(">[filedata]:",ALL_file_data,':')
 
 def interact_with_client(s):
+    print('>>>Request受信:',end ='')
     sentence = s.recv(1024).decode()#1回目のclientからの要求受信
-    print('Request受信...:',end="")
     word_list = sentence.split()
     
     if len(word_list) == 0:#word_listが何もなし
         print('Invalid_request')
         s.send('NG 301 Invalid command\n'.encode())
     elif word_list[0] == 'SEND':#SEND
-        print('SEND_request->',end="")
+        print('SEND_request')
+        print(">FILE受信中...")
         SEND_request(word_list,s)
-
+        print(">...OK")
     s.close()
     
 def main():#main
