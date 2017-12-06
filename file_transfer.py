@@ -9,10 +9,11 @@ import os.path
 import sys
 import time
 
-passlist = ['localhost','pbl2','pbl1']#経路リスト
+#passlist = ['localhost','pbl2','pbl1']#経路リスト
+passlist = ['localhost','azm.mydns.jp']
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
-clienthost = 'pbl5'  ##クライアントホスト
-serverhost = 'pbl2'  ##サーバーホスト
+#clienthost = 'pbl5'  ##クライアントホスト
+#serverhost = 'pbl2'  ##サーバーホスト
 server_port = int(sys.argv[1])  ##ポート番号
 
 def receive_data(client_socket):#データ受信関数,aの長さが0のとき終了
@@ -36,18 +37,23 @@ def nextpasslist():
                 return 0
             break
 
-def SEND_request_s(nextpass,client_socket):
+def SEND_request_s(server_name):
+    
+    client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+    client_socket.connect((server_name, server_port))
+    
     sentence = "SEND \n"
     client_socket.send(sentence.encode())
     #res_str = receive_data(client_socket)
     res_str = client_socket.recv(1024).decode()
     res_str_list = res_str.split()
     print(res_str)
-    if res_str_list[0] == "OK":
+    if res_str_list[0] == 'OK':
         print("SEND_FILE_DATA...",end='')
         filedata = "Helllo,World!!!"   ####ファイル送信####
         client_socket.send(filedata.encode())
         print('完了！')
+    client_socket.close()
 
 def SEND_request(word_list,s):#SEND,データを受け取る
     sentence = "OK \n"
@@ -71,17 +77,19 @@ def interact_with_client(s):
         print(">...OK")
     s.close()
     
-    if nextpasslist() != 0:
-        SEND_request_s(nextpasslist(),s)
+    nextpass = nextpasslist()
+    if nextpass != 0:
+        SEND_request_s(nextpass)
+        
     
 def main():#main
     if len(sys.argv) < 2:
-        sys.exit('Usage: python3 server2.py')
+        sys.exit('Usage: python3 server2.py PortNumber')
     server_socket = socket(AF_INET, SOCK_STREAM)
     server_socket.bind(('', server_port))
     server_socket.listen(10)
     
-    print('FILE Trancefer program is running...')
+    print('FILE Trancefer Program is running...')
     print(' [INFMATION]')
     sentence = ' ホスト名:{},ポート番号:{}'.format(os.uname()[1],server_port)
     print(sentence)
