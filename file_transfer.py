@@ -10,7 +10,7 @@ import sys
 import time
 
 #passlist = ['localhost','pbl2','pbl1']#経路リスト
-passlist = ['localhost','azm.mydns.jp']
+passlist = ['azm-ubuntu','azm.mydns.jp']
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 #clienthost = 'pbl5'  ##クライアントホスト
 #serverhost = 'pbl2'  ##サーバーホスト
@@ -25,20 +25,17 @@ def receive_data(client_socket):#データ受信関数,aの長さが0のとき�
         response_server.append(a[0])
     receive_str = response_server.decode()
     return receive_str 
+
 def nextpasslist():
     uname =  os.uname()[1]
     for n in range(len(passlist)):
         if passlist[n] == uname:
-            try:
                 nextpass = passlist[n+1]
                 print(nextpass)
                 return nextpass
-            except:
-                return 0
-            break
 
-def SEND_request_s(server_name):
-    
+def SEND_FILE_request_next(server_name):
+    print("Connect to" ,server_name)
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, server_port))
     
@@ -55,7 +52,7 @@ def SEND_request_s(server_name):
         print('完了！')
     client_socket.close()
 
-def SEND_request(word_list,s):#SEND,データを受け取る
+def SEND_FILE_request(word_list,s):#SEND,データを受け取る
     sentence = "OK \n"
     #print(sentence)
     s.send(sentence.encode())#応答OK
@@ -70,16 +67,18 @@ def interact_with_client(s):
     if len(word_list) == 0:#word_listが何もなし
         print('Invalid_request')
         s.send('NG 301 Invalid command\n'.encode())
-    elif word_list[0] == 'SEND':#SEND
-        print('SEND_request')
+        s.close()
+    elif word_list[0] == 'SEND':#SEND FILE
+        print('SEND_FILE_request')
         print(">FILE受信中...")
         SEND_request(word_list,s)
         print(">...OK")
-    s.close()
-    
-    nextpass = nextpasslist()
-    if nextpass != 0:
-        SEND_request_s(nextpass)
+        s.close()
+        nextpass = nextpasslist()
+        if nextpass != None:
+            SEND_FILE_request_next(nextpass)
+
+        
         
     
 def main():#main
@@ -91,7 +90,7 @@ def main():#main
     
     print('FILE Trancefer Program is running...')
     print(' [INFMATION]')
-    sentence = ' ホスト名:{},ポート番号:{}'.format(os.uname()[1],server_port)
+    sentence = ' ホスト名:{},ポート番号:{},\n 経路:{}'.format(os.uname()[1],server_port,passlist)
     print(sentence)
     print('...')
     while True:
