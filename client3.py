@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # client3.py
 # python3 client3.py HostName PortNumber
-#
 
 from socket import *
 import time

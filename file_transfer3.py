@@ -6,6 +6,10 @@ from socket import *
 import time
 import sys
 
+passlist = ['localhost','pbl2','pbl1']#経路リスト
+#passlist = ['azm-ubuntu','azm.mydns.jp']
+hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
+
 def receive_data(client_socket):#データ受信関数,aの長さが0のとき終了
     response_server = bytearray()
     while True:
@@ -16,22 +20,23 @@ def receive_data(client_socket):#データ受信関数,aの長さが0のとき�
     receive_str = response_server.decode()
     return receive_str
 
-def SEND_FILE_request_s(word_list,client_socket):
-    sentence = "SEND \n"
+def SEND_PASS_request(client_socket):
+    sentence = "SEND PASS \n"
     client_socket.send(sentence.encode())
     #res_str = receive_data(client_socket)
     res_str = client_socket.recv(1024).decode()
     res_str_list = res_str.split()
     print(res_str)
     if res_str_list[0] == "OK":
-        print("SEND_FILE_DATA...",end='')
-        filedata = "Helllo,World!!!"   ####ファイル送信####
-        client_socket.send(filedata.encode())
+        print("SEND_PASS_DATA...",end='')
+        passdata = " ".join(passlist)
+        print(passdata)
+        client_socket.send(passdata.encode())
         print('完了！')
     
 def main():#main
     if len(sys.argv) < 2:
-        sys.exit('Usage: python3 client3.py HostName PortNumber')
+        sys.exit('Usage: python3 client4.py HostName PortNumber')
     server_name = sys.argv[1]     #ホスト名
     server_port = int(sys.argv[2])#ポート番号
     #server_name = 'localhost'     #ホスト名
@@ -40,11 +45,11 @@ def main():#main
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, server_port))  # サーバのソケットに接続する
     
-    input_sentence = input('SEND\n>>>')
+    input_sentence = input('SEND PASS\n>>>')
     input_list = input_sentence.split()#命令分割
     
     if input_list[0] == 'SEND':
-        SEND_FILE_request_s(input_list,client_socket)
+        SEND_PASS_request(client_socket)
     
     client_socket.close()  
 if __name__ == '__main__':

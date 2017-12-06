@@ -17,7 +17,7 @@ def receive_data(client_socket):#データ受信関数,aの長さが0のとき�
     return receive_str
 
 def SEND_FILE_request_s(word_list,client_socket):
-    sentence = "SEND \n"
+    sentence = "SEND FILE\n"
     client_socket.send(sentence.encode())
     #res_str = receive_data(client_socket)
     res_str = client_socket.recv(1024).decode()
