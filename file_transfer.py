@@ -9,7 +9,7 @@ import os.path
 import sys
 import time
 
-passlist = ['pbl2','pbl4','pbl5']#経路リスト
+passlist = ['localhost','pbl2','pbl1']#経路リスト
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 clienthost = 'pbl5'  ##クライアントホスト
 serverhost = 'pbl2'  ##サーバーホスト
@@ -24,12 +24,35 @@ def receive_data(client_socket):#データ受信関数,aの長さが0のとき�
         response_server.append(a[0])
     receive_str = response_server.decode()
     return receive_str 
+def nextpasslist():
+    uname =  os.uname()[1]
+    for n in range(len(passlist)):
+        if passlist[n] == uname:
+            try:
+                nextpass = passlist[n+1]
+                print(nextpass)
+                return nextpass
+            except:
+                return 0
+            break
+
+def SEND_request_s(nextpass,client_socket):
+    sentence = "SEND \n"
+    client_socket.send(sentence.encode())
+    #res_str = receive_data(client_socket)
+    res_str = client_socket.recv(1024).decode()
+    res_str_list = res_str.split()
+    print(res_str)
+    if res_str_list[0] == "OK":
+        print("SEND_FILE_DATA...",end='')
+        filedata = "Helllo,World!!!"   ####ファイル送信####
+        client_socket.send(filedata.encode())
+        print('完了！')
 
 def SEND_request(word_list,s):#SEND,データを受け取る
     sentence = "OK \n"
     #print(sentence)
     s.send(sentence.encode())#応答OK
-    
     ALL_file_data = receive_data(s)#data受信
     print(">[filedata]:",ALL_file_data,':')
 
@@ -48,13 +71,16 @@ def interact_with_client(s):
         print(">...OK")
     s.close()
     
+    if nextpasslist() != 0:
+        SEND_request_s(nextpasslist(),s)
+    
 def main():#main
     if len(sys.argv) < 2:
         sys.exit('Usage: python3 server2.py')
     server_socket = socket(AF_INET, SOCK_STREAM)
     server_socket.bind(('', server_port))
     server_socket.listen(10)
-  
+    
     print('FILE Trancefer program is running...')
     print(' [INFMATION]')
     sentence = ' ホスト名:{},ポート番号:{}'.format(os.uname()[1],server_port)
