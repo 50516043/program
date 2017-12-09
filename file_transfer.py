@@ -53,6 +53,7 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
             f = open('filedata.txt','w')
             f.write(ALL_file_data)
             f.close()
+            print("OKOKOK")
         elif(res_str.split()[0] == 'NG'):#NG
             print(res_str)
   
