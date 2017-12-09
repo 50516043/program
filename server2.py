@@ -10,7 +10,7 @@ import pbl2017
 import sys
 import time
 
-server_port = 60623  ##ポート番号##
+server_port = int(sys.argv[1])  ##ポート番号##
 
 def receive_data2(client_socket):#データ受信関数,改行で終了
     response_server = bytearray()
@@ -81,7 +81,7 @@ def interact_with_client(s):
     token_str = "abcde"
     #sentence = s.recv(1024).decode()#1回目のclientからのデータ受信SIZE,GET,REP...
     tmp_sentence = receive_data2(s)
-    sentence = tmp_sentence.decode()
+    sentence = tmp_sentence#.decode()
     print('受信:',end="")
     word_list = sentence.split()
     
