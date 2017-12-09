@@ -34,6 +34,7 @@ def size_request_server(word_list,s):#SIZEリクエスト
     
 def get_request_server(word_list,s,token_str):#GETリクエスト
     filename = word_list[1]
+    print(token_str)
     if word_list[2] == pbl2017.genkey(token_str):#トークンが一致した場合
         if word_list[3] == 'ALL':#ALL
             try:
