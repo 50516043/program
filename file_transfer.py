@@ -91,7 +91,7 @@ def SEND_FILE_request_next(server_name):
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, server_port))
     
-    sentence = "SEND \n"
+    sentence = "SEND FILE \n"
     client_socket.send(sentence.encode())
     #res_str = receive_data(client_socket)
     res_str = client_socket.recv(1024).decode()
