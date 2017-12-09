@@ -81,7 +81,7 @@ def interact_with_client(s):
     token_str = "abcde"
     #sentence = s.recv(1024).decode()#1回目のclientからのデータ受信SIZE,GET,REP...
     tmp_sentence = receive_data2(s)
-    sentence = tmp_sentence#.decode()
+    sentence = tmp_sentence
     print('受信:',end="")
     word_list = sentence.split()
     

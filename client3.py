@@ -89,7 +89,8 @@ def main():#main
     server_name = sys.argv[1]     #ホスト名
     server_port = int(sys.argv[2])#ポート番号
     #filename = sys.argv[3]       　#ファイル名
-    token_str = "abcde"           #トークン文字列
+    token_str = "abcde"
+    ptint("hash:",pbl2017.genkey(token_str))           #トークン文字列
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, server_port))  # サーバのソケットに接続する
     
