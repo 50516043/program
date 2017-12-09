@@ -45,10 +45,10 @@ def main():#main
     server_port = int(sys.argv[2])#ポート番号
     filename = sys.argv[3]          #ファイル名
     token_str = sys.argv[4]        #トークン文字列
-    
+    ft_port = 50000
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-    client_socket.connect((server_name, server_port))  # サーバのソケットに接続する
+    client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
     
     GET_FILE_request(sys.argv,client_socket)
     
