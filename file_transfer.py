@@ -9,10 +9,10 @@ import os.path
 import sys
 import time
 
-#passlist = ['localhost','pbl2','pbl1']#経路リスト
+passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
 #passlist = ['azm-ubuntu','azm.mydns.jp']
 token_str = "abcde"
-passlist = []
+#passlist = []
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 #clienthost = 'pbl5'  ##クライアントホスト
 serverhost = 'pbl2'  ##サーバーホスト
