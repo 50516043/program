@@ -23,7 +23,9 @@ def GET_FILE_request(arg_str,client_socket):#SIZEリクエスト
     
     filename = arg_str[3]
     token_str = arg_str[4]
+    print(arg_str[4])
     getarg = pbl2017.genkey(token_str)
+    print(getarg)
     sentence = '{} {} {} {} \n'.format("GETFILE",filename,getarg,int(arg_str[2]))
     #GETFILE rnd50K.txt toke_nstr server_port
     client_socket.send(sentence.encode())
@@ -45,6 +47,7 @@ def main():#main
     server_port = int(sys.argv[2])#ポート番号
     filename = sys.argv[3]          #ファイル名
     token_str = sys.argv[4]        #トークン文字列
+    #print(token_str)
     ft_port = 50000
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る

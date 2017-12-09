@@ -78,7 +78,7 @@ def rep_request_server(word_list,s,token_str):#REPリクエスト
         s.send('NG 101 NO such file\n'.encode())
     
 def interact_with_client(s):
-    token_str = "abcde"
+    token_str = "aaa"
     print("hash:",pbl2017.genkey(token_str))  
     #sentence = s.recv(1024).decode()#1回目のclientからのデータ受信SIZE,GET,REP...
     tmp_sentence = receive_data2(s)
