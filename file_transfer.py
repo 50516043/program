@@ -112,7 +112,7 @@ def SEND_FILE_request(word_list,s):#SEND,データを受け取る
     s.send("OK \n".encode())#応答OK
     ALL_file_data = receive_data(s)#data受信
     print(">[filedata]:",ALL_file_data,':')
-
+    
 def SEND_PASS_request(s):
     s.send("OK \n".encode())
     sentence = receive_data(s)
@@ -126,6 +126,9 @@ def get_request_ft(word_list,client_socket):
     getarg = word_list[2]
     input_list = sentence.split()
     get_request_client(input_list,client_socket,getarg)
+    nextpass = nextpasslist()
+    if nextpass != None:
+        SEND_FILE_request_next(server_name)
     
 def interact_with_client(s):
     print('>>>Request受信:',end ='')
