@@ -40,9 +40,10 @@ def rep_request_client(input_list,client_socket,token_str):
 def main():#main
     if len(sys.argv) < 5:
         sys.exit('Usage: python3 client4.py [Server_Host] [PortNumber] [File_Name] [token_str]')
+    
     server_name = sys.argv[1]     #ホスト名
     server_port = int(sys.argv[2])#ポート番号
-    filename = sys.argv[3]       　#ファイル名
+    filename = sys.argv[3]          #ファイル名
     token_str = sys.argv[4]        #トークン文字列
     
     
