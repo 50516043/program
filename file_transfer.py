@@ -39,9 +39,8 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
     res_str = receive_data(client_socket)#データを受信
     print(res_str)
   
-def get_request_client_ft(input_list,client_socket,token_str):#GETリクエスト
+def get_request_client(input_list,client_socket,getarg):#GETリクエスト
     #getarg = pbl2017.genkey(token_str)#トークン文字列から生成したダイジェスト文字列を代入
-    getarg = "aaa"
     if (input_list[2] == 'ALL'):#ALL
         sentence = 'GET {} {} {}\n'.format(input_list[1],getarg,'ALL')#GET filename token ALL/PARTIAL sNUM gNUM
         print("[TO server]\n" + sentence)
@@ -57,6 +56,7 @@ def get_request_client_ft(input_list,client_socket,token_str):#GETリクエス�
             print(res_str)
         elif(res_str.split()[0] == 'NG'):#NG
             print(res_str)
+  
     elif (input_list[2] == 'PARTIAL'):#PARTIAL
         sentence = 'GET {0} {1} PARTIAL {2} {3}\n'.format(input_list[1],getarg,input_list[3],input_list[4])
         print("[TO server]\n" + sentence)
@@ -70,6 +70,7 @@ def get_request_client_ft(input_list,client_socket,token_str):#GETリクエス�
             print(res_str)
         elif(res_str.split()[0] == 'NG'):
             print(res_str)
+
 def rep_request_client(input_list,client_socket,token_str):
     sentence = 'REP {} {}\n'.format(input_list[1],pbl2017.repkey(token_str,input_list[1]))
     print(sentence)
@@ -119,6 +120,13 @@ def SEND_PASS_request(s):
     print("<<経路情報更新>>")
     print(passlist)
     
+def get_request_ft(word_list,client_socket):
+    #GET [filename] [ALL or PARTIAL] ([from]) ([to])
+    sentence = "GET {} {}".format(word_list[1],"ALL","0","0")
+    getarg = word_list[2]
+    input_list = sentence.split()
+    get_request_client(input_list,client_socket,getarg)
+    
 def interact_with_client(s):
     print('>>>Request受信:',end ='')
     sentence = s.recv(1024).decode()#1回目のclientからの要求受信
@@ -143,17 +151,18 @@ def interact_with_client(s):
         elif word_list[1] == 'PASS':
             print('SEND_PASS_Request')
             SEND_PASS_request(s)
-    elif word_list[0] == 'GET':
-        print("GET")
-        if (len(word_list) > 2 ):
-            s.close()
-            client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-            client_socket.connect(('localhost',60623))
-            get_request_client_ft(word_list,client_socket,token_str)
-            s.close()
-            #GET [filename] [ALL or PARTIAL] ([from]) ([to])
-        else:
-            print('GETコマンドの引数が正しく指定されていません')
+    elif word_list[0] == 'GETFILE':  #wordlist:GETFILE [filename] [token_strのダイジェスト] [serverport]
+        print("GETFILE")
+        #GET [filename] [ALL or PARTIAL] ([from]) ([to])
+        s.close()
+        server_port = int(word_list[3])
+        client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+        client_socket.connect(('localhost',server_port))
+        
+        get_request_ft(word_list,client_socket)
+        
+        s.close()
+        #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     
 def main():#main
     if len(sys.argv) < 2:

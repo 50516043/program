@@ -7,6 +7,8 @@ import time
 import sys
 import pbl2017
 
+hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
+
 def receive_data2(client_socket):#データ受信関数,改行で終了
     response_server = bytearray()
     while True:
@@ -72,6 +74,7 @@ def get_request_client(input_list,client_socket,token_str):#GETリクエスト
             print(res_str)
         elif(res_str.split()[0] == 'NG'):
             print(res_str)
+
 def rep_request_client(input_list,client_socket,token_str):
     sentence = 'REP {} {}\n'.format(input_list[1],pbl2017.repkey(token_str,input_list[1]))
     print(sentence)
