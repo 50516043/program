@@ -50,10 +50,9 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         print('[FROM server]\n' + res_str)
         if(res_str.split()[0] == 'OK'):#OK
             ALL_file_data = receive_data(client_socket)#ファイルデータ受信
-            f = open('filedata.dat','w')
+            f = open('filedata.txt','w')
             f.write(ALL_file_data)
             f.close()
-            print(res_str)
         elif(res_str.split()[0] == 'NG'):#NG
             print(res_str)
   
