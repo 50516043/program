@@ -36,33 +36,33 @@ def get_request_server(word_list,s,token_str):#GETリクエスト
     filename = word_list[1]
     print(token_str)
     #if word_list[2] == pbl2017.genkey(token_str):#トークンが一致した場合
-        if word_list[3] == 'ALL':#ALL
-            try:
-                f = open(filename)
-                file_size = os.path.getsize(filename)
-                sentence = 'OK Sending {} from 0 to {} total {} bytes at {}\n'.format(filename,file_size-1,file_size,time.time())
-                s.send(sentence.encode())
-                #print(sentence)
-                tmp_data = f.read()
-                s.send(tmp_data.encode())
-            except:
-                print('NG 101 NO such file')
-                s.send('NG 101 NO such file\n'.encode())
-        elif word_list[3] == 'PARTIAL':#PARTIAL
-            try:
-                f = open(filename)
-                offset = int(word_list[4])
-                length = int(word_list[5])
-                sentence = 'OK Sending {} from {} to {} total {} bytes\n'.format(filename,offset,length,length-offset+1)
-                s.send(sentence.encode())
-                print(sentence)
-                f.seek(offset)
-                tmp_data = f.read(length)
-                #tmp_data +='\n'
-                s.send(tmp_data.encode())
-            except:
-                print('NG 101 NO such file')
-                s.send('NG 101 NO such file\n'.encode())  
+    if word_list[3] == 'ALL':#ALL
+        try:
+            f = open(filename)
+            file_size = os.path.getsize(filename)
+            sentence = 'OK Sending {} from 0 to {} total {} bytes at {}\n'.format(filename,file_size-1,file_size,time.time())
+            s.send(sentence.encode())
+            #print(sentence)
+            tmp_data = f.read()
+            s.send(tmp_data.encode())
+        except:
+            print('NG 101 NO such file')
+            s.send('NG 101 NO such file\n'.encode())
+    elif word_list[3] == 'PARTIAL':#PARTIAL
+        try:
+            f = open(filename)
+            offset = int(word_list[4])
+            length = int(word_list[5])
+            sentence = 'OK Sending {} from {} to {} total {} bytes\n'.format(filename,offset,length,length-offset+1)
+            s.send(sentence.encode())
+            print(sentence)
+            f.seek(offset)
+            tmp_data = f.read(length)
+            #tmp_data +='\n'
+            s.send(tmp_data.encode())
+        except:
+            print('NG 101 NO such file')
+            s.send('NG 101 NO such file\n'.encode())  
     #else:#トークンが一致しない場合
         #s.send('NG 103 Invalid hash value for file {} with {} '.format(filename,token_str).encode())
     ##修正必要あり
