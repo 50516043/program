@@ -64,7 +64,7 @@ def get_request_server(word_list,s,token_str):#GETリクエスト
                 print('NG 101 NO such file')
                 s.send('NG 101 NO such file\n'.encode())  
     #else:#トークンが一致しない場合
-        s.send('NG 103 Invalid hash value for file {} with {} '.format(filename,token_str).encode())
+        #s.send('NG 103 Invalid hash value for file {} with {} '.format(filename,token_str).encode())
     ##修正必要あり
 def rep_request_server(word_list,s,token_str):#REPリクエスト
     try:
