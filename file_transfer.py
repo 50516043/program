@@ -82,8 +82,11 @@ def nextpasslist():
     uname =  os.uname()[1]
     for n in range(len(passlist)):
         if passlist[n] == uname:
-                nextpass = passlist[n+1]
-                print(nextpass)
+                try:
+                    nextpass = passlist[n+1]
+                    print(nextpass)
+                except:
+                    nextpass = None
                 return nextpass
 
 def SEND_FILE_request_next(server_name):
