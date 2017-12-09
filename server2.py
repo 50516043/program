@@ -58,7 +58,6 @@ def get_request_server(word_list,s,token_str):#GETリクエスト
             print(sentence)
             f.seek(offset)
             tmp_data = f.read(length)
-            #tmp_data +='\n'
             s.send(tmp_data.encode())
         except:
             print('NG 101 NO such file')

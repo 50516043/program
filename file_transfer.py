@@ -170,7 +170,7 @@ def interact_with_client(s):
     
 def main():#main
     if len(sys.argv) < 2:
-        sys.exit('Usage: python3 server2.py PortNumber')
+        sys.exit('Usage: python3 file_transfer.py [PortNumber]')
     server_socket = socket(AF_INET, SOCK_STREAM)
     server_socket.bind(('', server_port))
     server_socket.listen(10)
