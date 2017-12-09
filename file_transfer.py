@@ -129,7 +129,7 @@ def get_request_ft(word_list,client_socket):
     nextpass = nextpasslist()
     print(nextpass)
     if nextpass != None:
-        SEND_FILE_request_next(server_name)
+        SEND_FILE_request_next(nextpass)
     
 def interact_with_client(s):
     print('>>>Request受信:',end ='')
