@@ -93,7 +93,7 @@ def rep_request_client(input_list,client_socket,token_str):
     #if(res_str.split()[0] == 'OK'):
     print(res_str)
 
-def nextpasslist():
+def nextpasslist():#次の経路があるかどうか
     uname =  os.uname()[1]
     for n in range(len(passlist)):
         if passlist[n] == uname:
@@ -117,7 +117,8 @@ def SEND_FILE_request_next(server_name):
     print(res_str)
     if res_str_list[0] == 'OK':
         print("SEND_FILE_DATA...",end='')
-        filedata = "Helllo,World!!!"   ####ファイル送信####
+        f = open('filedata.txt','r')
+        filedata = f.read()
         client_socket.send(filedata.encode())
         print('完了！')
     client_socket.close()
