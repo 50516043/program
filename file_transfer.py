@@ -9,7 +9,8 @@ import os.path
 import sys
 import time
 
-passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
+#passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
+passlist = ['pbl5','pbl1','pbl2']
 #passlist = ['azm-ubuntu','azm.mydns.jp']
 token_str = "abcde"
 #passlist = []
