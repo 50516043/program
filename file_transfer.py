@@ -28,6 +28,18 @@ def receive_data(client_socket):#データ受信関数,aの長さが0のとき�
     receive_str = response_server.decode()
     return receive_str 
 
+def receive_data2(client_socket):#データ受信関数,改行で終了
+    response_server = bytearray()
+    while True:
+        a =  client_socket.recv(1)#1バイトずつ
+        if len(a)==0:
+            continue
+        response_server.append(a[0])
+        if a == b'\n':
+            break
+    receive_str = response_server.decode()
+    return receive_str
+
 def size_request_client(input_list,client_socket):#SIZEリクエスト
     try:
         filename = input_list[1]
@@ -45,12 +57,13 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         sentence = 'GET {} {} {}\n'.format(input_list[1],getarg,'ALL')#GET filename token ALL/PARTIAL sNUM gNUM
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
-        res_str = receive_data(client_socket)#サーバーからの応答を受信
+        res_str = receive_data2(client_socket)#サーバーからの応答を受信
         #res_str = client_socket.recv(1024).decode()
         print('[FROM server]\n' + res_str)
         if(res_str.split()[0] == 'OK'):#OK
             ALL_file_data = receive_data(client_socket)#ファイルデータ受信
             f = open('filedata.txt','w')
+            print("aaa")
             f.write(ALL_file_data)
             f.close()
             print("OKOKOK")
