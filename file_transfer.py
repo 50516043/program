@@ -129,7 +129,7 @@ def SEND_FILE_request(word_list,s):#SEND,データを受け取る
     f = open('filedata.txt','w')
     f.wirte(ALL_file_data)
     print('ファイル書き込み完了')
-    #print(">[filedata]:",ALL_file_data,':')
+    print(">[filedata]:",ALL_file_data,':')
     
 def SEND_PASS_request(s):
     s.send("OK \n".encode())
