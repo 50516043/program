@@ -128,8 +128,8 @@ def SEND_FILE_request(word_list,s):#SEND,データを受け取る
     ALL_file_data = receive_data(s)#data受信
     f = open('filedata.txt','w')
     f.write(ALL_file_data)
-    print('ファイル書き込み完了')
-    print(">[filedata]:",ALL_file_data,':')
+    print('ファイル書き込み')
+    #print(">[filedata]:",ALL_file_data,':')
     
 def SEND_PASS_request(s):
     s.send("OK \n".encode())

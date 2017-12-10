@@ -25,7 +25,7 @@ def GET_FILE_request(arg_str,client_socket):#SIZEリクエスト
     token_str = arg_str[4]
     print(arg_str[4])
     getarg = pbl2017.genkey(token_str)
-    print(getarg)
+    print("hash:",getarg)
     sentence = '{} {} {} {} \n'.format("GETFILE",filename,getarg,int(arg_str[2]))
     #GETFILE rnd50K.txt toke_nstr server_port
     client_socket.send(sentence.encode())
