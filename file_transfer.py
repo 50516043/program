@@ -10,19 +10,19 @@ import sys
 import time
 
 #passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
-passlist = ['pbl5','pbl1','pbl2']
+passlist = ['pbl5','pbl1','pbl2','pbl3']
 #passlist = ['azm-ubuntu','azm.mydns.jp']
-token_str = "abcde"
+token_str = ''
 #passlist = []
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 #clienthost = 'pbl5'  ##クライアントホスト
 serverhost = 'pbl2'  ##サーバーホスト
 server_port = int(sys.argv[1])  ##ポート番号
 
-def receive_data(client_socket):#データ受信関数,aの長さが0のとき終了
+def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
     response_server = bytearray()
     while True:
-        a =  client_socket.recv(1)#1024バイトずつ
+        a =  client_socket.recv(1)
         if len(a)<=0 :
             break
         response_server.append(a[0])
@@ -32,7 +32,7 @@ def receive_data(client_socket):#データ受信関数,aの長さが0のとき�
 def receive_data2(client_socket):#データ受信関数,改行で終了
     response_server = bytearray()
     while True:
-        a =  client_socket.recv(1)#1バイトずつ
+        a =  client_socket.recv(1)
         if len(a)==0:
             continue
         response_server.append(a[0])
@@ -49,7 +49,7 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
         sys.exit()
     sentence = '{} {} \n'.format("SIZE",filename)
     client_socket.send(sentence.encode())
-    res_str = receive_data(client_socket)#データを受信
+    res_str = receive_data(client_socket)
     print(res_str)
   
 def get_request_client(input_list,client_socket,getarg):#GETリクエスト
