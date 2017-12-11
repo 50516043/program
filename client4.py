@@ -79,7 +79,7 @@ def main():#main
     s.close()
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-    client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
+    client_socket.connect((server_name, 60623))  # サーバのソケットに接続する
     GET_FILE_request(sys.argv,client_socket)
     
     rep_request_client(filename,client_socket,token_str)
