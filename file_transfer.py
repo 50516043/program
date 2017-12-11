@@ -18,7 +18,7 @@ hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 #clienthost = 'pbl5'  ##クライアントホスト
 #serverhost = 'pbl2'  ##サーバーホスト
 filename = ""
-
+cl_port = 50001
 server_port = int(sys.argv[1])  ##ポート番号
 
 def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
@@ -172,7 +172,7 @@ def interact_with_client(s):
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-                client_socket.connect(('localhost', server_port))
+                client_socket.connect(('localhost', cl_port))
                 client_socket.send(sentence.encode())
                 
         elif word_list[1] == 'PASS':
