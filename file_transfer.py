@@ -145,6 +145,7 @@ def get_request_ft(word_list,client_socket):
     nextpass = nextpasslist()
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
+        print('next')
     else:
         sentence = "ALL FILE RECEIVED \n"
         print(sentence)
