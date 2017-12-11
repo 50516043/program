@@ -151,7 +151,7 @@ def interact_with_client(s):
     sentence = s.recv(1024).decode()#1回目のclientからの要求受信
     print(sentence)
     word_list = sentence.split()
-    
+    filename = word_list[1]
     if len(word_list) == 0:#word_listが何もなし
         print('Invalid_request')
         s.send('NG 301 Invalid command\n'.encode())
