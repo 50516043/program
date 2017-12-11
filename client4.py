@@ -19,7 +19,7 @@ def receive_data(client_socket):#データ受信関数,aの長さが0のとき�
     receive_str = response_server.decode()
     return receive_str
 
-def GET_FILE_request(arg_str,client_socket):#SIZEリクエスト
+def GET_FILE_request(arg_str,client_socket):
     filename = arg_str[3]
     token_str = arg_str[4]
     print(arg_str[4])
@@ -48,12 +48,25 @@ def main():#main
     token_str = sys.argv[4]        #トークン文字列
     #print(token_str)
     ft_port = 50000
-    
+    cl_port = 50001
+    #ファイル転送プログラムに接続
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
-    
     GET_FILE_request(sys.argv,client_socket)
+    client_socket.close()  
+    
+    s = socket(AF_INET, SOCK_STREAM)
+    s.bind(('', cl_port))
+    s.listen(1)
+    print('Transmitting file...')
+    connection_socket, addr = s.accept()
+    sentence = s.recv(1024).decode()
+    print(sentence)
+    s.close()
+    
+    
     
     client_socket.close()  
+    
 if __name__ == '__main__':
      main()
