@@ -125,7 +125,7 @@ def SEND_FILE_request_next(server_name):
 def SEND_FILE_request(word_list,s):#SEND,データを受け取る
     s.send("OK \n".encode())#応答OK
     ALL_file_data = receive_data(s)#data受信
-    f = open('filedata.txt','w')
+    f = open(filename,'w')
     f.write(ALL_file_data)
     print('ファイル書き込み')
     
