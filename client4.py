@@ -36,7 +36,7 @@ def receive_data2(client_socket):#データ受信関数,改行で終了
 def GET_FILE_request(arg_str,client_socket):
     filename = arg_str[3]
     token_str = arg_str[4]
-    print(arg_str[4])
+    print('token_str',arg_str[4])
     #getarg = pbl2017.genkey(token_str)
     getarg = "e8cf514f7e854da883e9a26421acf2db35d455e7c6ad33435d003678abd8eb00"
     print("hash:",getarg)
@@ -83,7 +83,6 @@ def main():#main
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, 60623))  # サーバのソケットに接続する
-    #GET_FILE_request(sys.argv,client_socket)
     
     rep_request_client(filename,client_socket,token_str)
     
