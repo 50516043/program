@@ -6,6 +6,7 @@ from socket import *
 import time
 import sys
 import pbl2017
+import shutil
 from fileinput import filename
 
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
@@ -77,6 +78,8 @@ def main():#main
     sentence = receive_data2(connection_socket)
     print(sentence)
     s.close()
+    
+    shutil.copy("filedata.txt",filename)
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, 60623))  # サーバのソケットに接続する
