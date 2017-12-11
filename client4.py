@@ -75,7 +75,7 @@ def main():#main
     s.listen(1)
     print('Transmitting file...')
     connection_socket, addr = s.accept()
-    sentence = receive_data(connection_socket)
+    sentence = receive_data2(connection_socket)
     print(sentence)
     s.close()
     
@@ -83,7 +83,7 @@ def main():#main
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, 60623))  # サーバのソケットに接続する
-    GET_FILE_request(sys.argv,client_socket)
+    #GET_FILE_request(sys.argv,client_socket)
     
     rep_request_client(filename,client_socket,token_str)
     
