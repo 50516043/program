@@ -144,6 +144,7 @@ def get_request_ft(word_list,client_socket):
     get_request_client(input_list,client_socket,getarg)
     nextpass = nextpasslist()
     if nextpass != None:
+        print('next')
         SEND_FILE_request_next(nextpass)
         print('next')
     else:
