@@ -144,15 +144,7 @@ def get_request_ft(word_list,client_socket):
     get_request_client(input_list,client_socket,getarg)
     nextpass = nextpasslist()
     if nextpass != None:
-        print('next')
         SEND_FILE_request_next(nextpass)
-        print('next')
-    else:
-        sentence = "ALL FILE RECEIVED \n"
-        print(sentence)
-        client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-        client_socket.connect((passlist[-1], server_port))
-        client_socket.send(sentence.encode())
     
 def interact_with_client(s):
     print('>>>Request受信:',end ='')
@@ -174,7 +166,14 @@ def interact_with_client(s):
             s.close()
             nextpass = nextpasslist()
             if nextpass != None:
+                print("next")
                 SEND_FILE_request_next(nextpass)
+            else:
+                sentence = "ALL FILE RECEIVED \n"
+                print(sentence)
+                client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+                client_socket.connect((passlist[-1], server_port))
+                client_socket.send(sentence.encode())
         elif word_list[1] == 'PASS':
             print('SEND_PASS_Request')
             SEND_PASS_request(s)
