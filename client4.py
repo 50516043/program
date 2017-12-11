@@ -51,7 +51,7 @@ def rep_request_client(filename,client_socket,token_str):
     print(sentence)
     client_socket.send(sentence.encode())
     res_str = receive_data(client_socket)#データを受信
-    print(res_str)
+    #print(res_str)
     
 def main():#main
     if len(sys.argv) < 5:
