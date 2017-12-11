@@ -9,9 +9,7 @@ import os.path
 import sys
 import time
 
-#passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
-passlist = ['pbl1','pbl2','pbl3','pbl4']
-#passlist = ['azm-ubuntu','azm.mydns.jp']
+passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
 token_str = ''
 #passlist = []
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
@@ -62,6 +60,7 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         client_socket.send(sentence.encode())#サーバーへリクエスト
         res_str = receive_data2(client_socket)#サーバーからの応答を受信
         print('[FROM server]\n' + res_str)
+        
         if(res_str.split()[0] == 'OK'):#OK
             ALL_file_data = receive_data(client_socket)#ファイルデータ受信
             f = open(filename,'w')
