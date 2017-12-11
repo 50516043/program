@@ -10,13 +10,13 @@ import sys
 import time
 
 #passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
-passlist = ['pbl5','pbl1','pbl2','pbl3']
+passlist = ['pbl5','pbl1','pbl2','pbl3','pbl4','pbl5']
 #passlist = ['azm-ubuntu','azm.mydns.jp']
 token_str = ''
 #passlist = []
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 #clienthost = 'pbl5'  ##クライアントホスト
-serverhost = 'pbl2'  ##サーバーホスト
+#serverhost = 'pbl2'  ##サーバーホスト
 server_port = int(sys.argv[1])  ##ポート番号
 
 def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
@@ -40,7 +40,7 @@ def receive_data2(client_socket):#データ受信関数,改行で終了
             break
     receive_str = response_server.decode()
     return receive_str
-
+##サーバーに要求するための関数###---
 def size_request_client(input_list,client_socket):#SIZEリクエスト
     try:
         filename = input_list[1]
@@ -53,21 +53,17 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
     print(res_str)
   
 def get_request_client(input_list,client_socket,getarg):#GETリクエスト
-    #getarg = pbl2017.genkey(token_str)#トークン文字列から生成したダイジェスト文字列を代入
     if (input_list[2] == 'ALL'):#ALL
         sentence = 'GET {} {} {}\n'.format(input_list[1],getarg,'ALL')#GET filename token ALL/PARTIAL sNUM gNUM
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
         res_str = receive_data2(client_socket)#サーバーからの応答を受信
-        #res_str = client_socket.recv(1024).decode()
         print('[FROM server]\n' + res_str)
         if(res_str.split()[0] == 'OK'):#OK
             ALL_file_data = receive_data(client_socket)#ファイルデータ受信
             f = open('filedata.txt','w')
-            print("aaa")
             f.write(ALL_file_data)
             f.close()
-            print("OKOKOK")
         elif(res_str.split()[0] == 'NG'):#NG
             print(res_str)
   
@@ -92,14 +88,14 @@ def rep_request_client(input_list,client_socket,token_str):
     res_str = receive_data(client_socket)#データを受信
     #if(res_str.split()[0] == 'OK'):
     print(res_str)
+###サーバーに要求するための関数###---
 
-def nextpasslist():#次の経路があるかどうか
+def nextpasslist():#次の経路があるかどうか,あれば次のホストを返す
     uname =  os.uname()[1]
     for n in range(len(passlist)):
         if passlist[n] == uname:
                 try:
                     nextpass = passlist[n+1]
-                    print(nextpass)
                 except:
                     nextpass = None
                 return nextpass
@@ -129,7 +125,6 @@ def SEND_FILE_request(word_list,s):#SEND,データを受け取る
     f = open('filedata.txt','w')
     f.write(ALL_file_data)
     print('ファイル書き込み')
-    #print(">[filedata]:",ALL_file_data,':')
     
 def SEND_PASS_request(s):
     s.send("OK \n".encode())
@@ -145,7 +140,6 @@ def get_request_ft(word_list,client_socket):
     input_list = sentence.split()
     get_request_client(input_list,client_socket,getarg)
     nextpass = nextpasslist()
-    print(nextpass)
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
     
@@ -186,7 +180,7 @@ def interact_with_client(s):
         s.close()
         #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     
-def main():#main
+def main():
     if len(sys.argv) < 2:
         sys.exit('Usage: python3 file_transfer.py [PortNumber]')
     server_socket = socket(AF_INET, SOCK_STREAM)

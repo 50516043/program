@@ -58,7 +58,7 @@ def get_request_client(input_list,client_socket,token_str):#GETリクエスト
             f = open('filedata.dat','w')
             f.write(ALL_file_data)
             f.close()
-            print(ALL_file_data)
+            #print(ALL_file_data)
         elif(res_str.split()[0] == 'NG'):#NG
             print(res_str)
   

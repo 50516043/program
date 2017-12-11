@@ -20,7 +20,6 @@ def receive_data(client_socket):#データ受信関数,aの長さが0のとき�
     return receive_str
 
 def GET_FILE_request(arg_str,client_socket):#SIZEリクエスト
-    
     filename = arg_str[3]
     token_str = arg_str[4]
     print(arg_str[4])
