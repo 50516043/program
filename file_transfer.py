@@ -172,8 +172,9 @@ def interact_with_client(s):
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-                client_socket.connect((passlist[-1], server_port))
+                client_socket.connect(('localhost', server_port))
                 client_socket.send(sentence.encode())
+                
         elif word_list[1] == 'PASS':
             print('SEND_PASS_Request')
             SEND_PASS_request(s)
