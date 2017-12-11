@@ -79,7 +79,7 @@ def main():#main
     print(sentence)
     s.close()
     
-    shutil.copy("filedata.txt",filename)
+    shutil.copy("filedata.dat",filename)
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, 60623))  # サーバのソケットに接続する
