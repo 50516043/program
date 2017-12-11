@@ -116,7 +116,7 @@ def SEND_FILE_request_next(server_name):
     print(res_str)
     if res_str_list[0] == 'OK':
         print("SEND_FILE_DATA...",end='')
-        f = open('filedata.txt','r')
+        f = open(filename,'r')
         filedata = f.read()
         client_socket.send(filedata.encode())
         print('完了！')
