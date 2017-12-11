@@ -19,6 +19,18 @@ def receive_data(client_socket):#データ受信関数,aの長さが0のとき�
     receive_str = response_server.decode()
     return receive_str
 
+def receive_data2(client_socket):#データ受信関数,改行で終了
+    response_server = bytearray()
+    while True:
+        a =  client_socket.recv(1)#1バイトずつ
+        if len(a)==0:
+            continue
+        response_server.append(a[0])
+        if a == b'\n':
+            break
+    receive_str = response_server.decode()
+    return receive_str
+
 def GET_FILE_request(arg_str,client_socket):
     filename = arg_str[3]
     token_str = arg_str[4]
@@ -61,7 +73,7 @@ def main():#main
     s.listen(1)
     print('Transmitting file...')
     connection_socket, addr = s.accept()
-    sentence = s.recv(1024).decode()
+    sentence = receive_data2(s)
     print(sentence)
     s.close()
     
