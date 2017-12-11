@@ -147,6 +147,7 @@ def get_request_ft(word_list,client_socket):
         SEND_FILE_request_next(nextpass)
     else:
         sentence = "ALL FILE RECEIVED \n"
+        print(sentence)
         client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
         client_socket.connect((passlist[-1], server_port))
         client_socket.send(sentence.encode())
