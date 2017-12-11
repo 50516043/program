@@ -8,7 +8,7 @@ import sys
 import pbl2017
 
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
-
+filename = ""
 def receive_data2(client_socket):#データ受信関数,改行で終了
     response_server = bytearray()
     while True:
@@ -46,6 +46,7 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
 def get_request_client(input_list,client_socket,token_str):#GETリクエスト
     getarg = pbl2017.genkey(token_str)#トークン文字列から生成したダイジェスト文字列を代入
     if (input_list[2] == 'ALL'):#ALL
+        filename = input_list[1]
         sentence = 'GET {} {} {}\n'.format(input_list[1],getarg,'ALL')#GET filename token ALL/PARTIAL sNUM gNUM
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
@@ -55,7 +56,7 @@ def get_request_client(input_list,client_socket,token_str):#GETリクエスト
         print('[FROM server]\n' + res_str)
         if(res_str.split()[0] == 'OK'):#OK
             ALL_file_data = receive_data(client_socket)#ファイルデータ受信
-            f = open('rnd50K.txt','w')
+            f = open(filename,'w')
             f.write(ALL_file_data)
             f.close()
             #print(ALL_file_data)
