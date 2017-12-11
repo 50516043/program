@@ -6,6 +6,7 @@ from socket import *
 import time
 import sys
 import pbl2017
+from fileinput import filename
 
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 
@@ -44,8 +45,8 @@ def GET_FILE_request(arg_str,client_socket):
     res_str = receive_data(client_socket)#データを受信
     print(res_str)
   
-def rep_request_client(input_list,client_socket,token_str):
-    sentence = 'REP {} {}\n'.format(input_list[1],pbl2017.repkey(token_str,input_list[1]))
+def rep_request_client(filename,client_socket,token_str):
+    sentence = 'REP {} {}\n'.format(filename,pbl2017.repkey(token_str,filename))
     print(sentence)
     client_socket.send(sentence.encode())
     res_str = receive_data(client_socket)#データを受信
@@ -77,6 +78,11 @@ def main():#main
     print(sentence)
     s.close()
     
+    client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+    client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
+    GET_FILE_request(sys.argv,client_socket)
+    
+    rep_request_client(filename,client_socket,token_str)
     
     
     client_socket.close()  
