@@ -73,7 +73,7 @@ def main():#main
     s.listen(1)
     print('Transmitting file...')
     connection_socket, addr = s.accept()
-    sentence = receive_data2(s)
+    sentence = receive_data2(connection_socket)
     print(sentence)
     s.close()
     
