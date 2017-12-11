@@ -72,8 +72,8 @@ def main():#main
     s.bind(('', cl_port))
     s.listen(1)
     print('Transmitting file...')
-    connection_socket, addr = s.accept()
-    sentence = receive_data2(connection_socket)
+    #connection_socket, addr = s.accept()
+    sentence = receive_data2(s)
     print(sentence)
     s.close()
     
