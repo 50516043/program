@@ -20,6 +20,8 @@ route_list = [[0, a12, a13, a14, a15],
               [a14, a24, a34, 0, a45],
               [a15, a25, a35, a45, 0]] # 初期のノード間の距離のリスト
 
+hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
+
 node_num = len(route_list) #ノードの数
 
 unsearched_nodes = list(range(node_num)) # 未探索ノード
@@ -54,15 +56,21 @@ while(len(unsearched_nodes) != 0): #未探索ノードがなくなるまで繰�
                 previous_nodes[index] =  target_min_index #　ひとつ前に到達するノードのリストも更新
 
 # 以下で結果の表示
-
+passlist=[]
 print("-----経路-----")
 previous_node = node_num - 1
 while previous_node != -1:
     if previous_node !=0:
-        print(str(previous_node + 1) + " <- ", end='')
+        #print(str(previous_node + 1) + " <- ", end='')
+        print(hostlist[previous_node] , " <- ", end='')
+        passlist.append(hostlist[previous_node])
     else:
-        print(str(previous_node + 1))
+        #print(str(previous_node + 1))
+        print(hostlist[previous_node])
+        passlist.append(hostlist[previous_node])
     previous_node = previous_nodes[previous_node]
-
+    
 print("-----距離-----")
 print(distance[node_num - 1])
+
+print(passlist)
