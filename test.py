@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 # filetrans_client.py
-#
-# 決められたファイルの指定されたサイズまでを転送するシステムのクライアント
 
 import math
 

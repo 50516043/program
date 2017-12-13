@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # file_trancefer.py PortNumber
-# bwcheck_server.py
 
 import random
 from socket import *
