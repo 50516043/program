@@ -115,7 +115,7 @@ def SEND_FILE_request_next(server_name):
     print(res_str)
     if res_str_list[0] == 'OK':
         print("SEND_FILE_DATA...",end='')
-        f = open('filedata.txt','r')
+        f = open('filedata.dat','r')
         filedata = f.read()
         client_socket.send(filedata.encode())
         print('完了！')
@@ -124,7 +124,7 @@ def SEND_FILE_request_next(server_name):
 def SEND_FILE_request(word_list,s):#SEND,データを受け取る
     s.send("OK \n".encode())#応答OK
     ALL_file_data = receive_data(s)#data受信
-    f = open('filedata.txt','w')
+    f = open('filedata.dat','w')
     f.write(ALL_file_data)
     print('ファイル書き込み')
     
