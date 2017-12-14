@@ -270,6 +270,7 @@ def interact_with_client(s):
             s.close()
         else:
             print('時間計測されていません')
+            s.close()
     else:
          print('Invalid Command.')  
          
