@@ -235,10 +235,11 @@ def interact_with_client(s):
             print('CALCULATION') 
             s.close()
             band_width()
-            if  nexthostlist() != None:
+            nexthost = nexthostlist()
+            if  nexthost != None:
                 print('next')
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-                client_socket.connect((nexthost(),server_port))
+                client_socket.connect((nexthost,server_port))
                 client_socket.send('BANDWIDTH CALCULATION \n')
                 
         elif word_list[1] == 'CALCULATION2':
