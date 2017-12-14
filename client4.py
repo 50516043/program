@@ -61,7 +61,7 @@ def time_request():
         s.connect((hostlist[i], ft_port))
         s.send('TIMELIST'.encode())
         sentence = receive_data(s)
-        print(sentene)
+        print(sentence)
         s.close()
         
 def main():#main
