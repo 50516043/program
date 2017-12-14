@@ -264,9 +264,12 @@ def interact_with_client(s):
             band_width2(s)
             s.close()
     elif  word_list[0] == 'TIMELIST':
-        print(sentence_time)
-        s.send(sentence_time.encode())
-        s.close()
+        if sentence_time != '':
+            print(sentence_time)
+            s.send(sentence_time.encode())
+            s.close()
+        else:
+            print('時間計測されていません')
     else:
          print('Invalid Command.')  
          
