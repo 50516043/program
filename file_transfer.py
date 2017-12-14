@@ -179,7 +179,7 @@ def band_width2(s):#帯域幅計算
     print('band_width2')
     sentence = 'OK \n'
     s.send(sentence.encode())
-    for i in range(100):
+    for i in range(1000):
         random_number = random.randrange(256)
         sentence2 = '{}'.format(random_number)
         s.send(sentence2.encode())
@@ -235,6 +235,12 @@ def interact_with_client(s):
             print('CALCULATION') 
             s.close()
             band_width()
+            if  nexthostlist() != None:
+                print('next')
+                client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+                client_socket.connect((nexthost(),server_port))
+                client_socket.send('BANDWIDTH CALCULATION \n')
+                
         elif word_list[1] == 'CALCULATION2':
             print('CALCULATION2')
             band_width2(s)
