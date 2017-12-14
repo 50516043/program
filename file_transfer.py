@@ -174,14 +174,14 @@ def band_width():#帯域幅計算
                 client_socket.close()
                 print('測定時間:',passed_time)
                 timelist.append(passed_time)
-        #s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-        #s.connect(('pbl4',server_port))
-        sentence = 'TIME {}'.format(uname)
-        for j in range(len(timelist)):
-            sentence += ' {}'.format(timelist[j])
+    #s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+    #s.connect(('pbl4',server_port))
+    sentence = 'TIME {}'.format(uname)
+    for j in range(len(timelist)):
+        sentence += ' {}'.format(timelist[j])
         print(sentence)
-        #s.send(sentence.encode())
-        #s.close()
+    #s.send(sentence.encode())
+    #s.close()
         
         
     next_bandwidth()
