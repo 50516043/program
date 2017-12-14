@@ -72,7 +72,7 @@ def time_request():
             bandwidth_list.append(tmp_list[i])  
     #print(bandwidth_list)
     return bandwidth_list
-def send_passlist():
+def send_passlist(passlist):
     sentence = ''
     for i in range(len(passlist)):
         sentence += '{} '.format(passlist[1])
@@ -180,7 +180,7 @@ def main():#main
             #print(bandwidth_list)
             passlist = shortest_path(bandwidth_list)
         elif str == 'PASSLIST':
-            send_passlist()
+            send_passlist(passlist)
         else:
             break
             
