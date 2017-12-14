@@ -139,6 +139,7 @@ def shortest_path(bandwidth_list):
             passlist.append(hostlist[previous_node])
         previous_node = previous_nodes[previous_node]
     
+    tmp_passlist=[]
     print("-----距離-----")
     print(distance[node_num - 1])
     for i in range(len(passlist),0):
