@@ -142,7 +142,7 @@ def shortest_path(bandwidth_list):
     tmp_passlist=[]
     print("-----距離-----")
     print(distance[node_num - 1])
-    for i in range(len(passlist),0):
+    for i in range(len(passlist),0,-1):
         tmp_passlist.append(passlist[i])
     print(tmp_passlist)
     return tmp_passlist            
