@@ -156,7 +156,7 @@ def get_request_ft(word_list,client_socket):
 
 def band_width():#帯域幅計算
     uname =  os.uname()[1]
-    
+    next_bandwidth()
     for n in range(len(hostlist)):
         if hostlist[n] == uname:
             for i in range(1,len(hostlist)-n):
@@ -174,7 +174,7 @@ def band_width():#帯域幅計算
                 passed_time = time_end - time_start
                 client_socket.close()
                 print('測定時間:',passed_time)
-                next_bandwidth()
+                
 
 def next_bandwidth():                
     nexthost = nexthostlist()
