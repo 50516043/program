@@ -8,6 +8,7 @@ import sys
 import pbl2017
 import shutil
 import math
+from wheel.signatures.djbec import double
 #from fileinput import filename
 
 #hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
@@ -73,14 +74,14 @@ def time_request():
     return bandwidth_list
 
 def shortest_path(bandwidth_list):
-    a12 = int(bandwidth_list[0])
-    a13 = int(bandwidth_list[1])
-    a14 = int(bandwidth_list[2])
+    a12 = double(bandwidth_list[0])
+    a13 = double(bandwidth_list[1])
+    a14 = double(bandwidth_list[2])
     #a15 = 0.4
-    a23 = int(bandwidth_list[3])
-    a24 = int(bandwidth_list[4])
+    a23 = double(bandwidth_list[3])
+    a24 = double(bandwidth_list[4])
     #a25 = 0.06
-    a34 = int(bandwidth_list[5])
+    a34 = double(bandwidth_list[5])
     #a35 = 0.3
     #a45 = 0.1
     
