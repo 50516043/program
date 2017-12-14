@@ -73,14 +73,14 @@ def time_request():
     return bandwidth_list
 
 def shortest_path(bandwidth_list):
-    a12 = bandwidth_list[0]
-    a13 = bandwidth_list[1]
-    a14 = bandwidth_list[2]
+    a12 = int(bandwidth_list[0])
+    a13 = int(bandwidth_list[1])
+    a14 = int(bandwidth_list[2])
     #a15 = 0.4
-    a23 = bandwidth_list[3]
-    a24 = bandwidth_list[4]
+    a23 = int(bandwidth_list[3])
+    a24 = int(bandwidth_list[4])
     #a25 = 0.06
-    a34 = bandwidth_list[5]
+    a34 = int(bandwidth_list[5])
     #a35 = 0.3
     #a45 = 0.1
     
@@ -88,7 +88,7 @@ def shortest_path(bandwidth_list):
               [a12, 0, a23, a24],
               [a13, a23, 0, a34],
               [a14, a24, a34, 0]] # 初期のノード間の距離のリスト
-    print(route_list)
+    #print(route_list)
     node_num = len(route_list) #ノードの数
     unsearched_nodes = list(range(node_num)) # 未探索ノード
     distance = [math.inf] * node_num # ノードごとの距離のリスト
@@ -107,8 +107,8 @@ def shortest_path(bandwidth_list):
         target_edge = route_list[target_min_index] # ターゲットになるノードからのびるエッジのリスト
         for index, route_dis in enumerate(target_edge):
             if route_dis != 0:
-                if distance[index] > (distance[ target_min_index] + route_dis):
-                    distance[index] = distance[ target_min_index] + route_dis # 過去に設定されたdistanceよりも小さい場合はdistanceを更新
+                if distance[index] > (distance[target_min_index] + route_dis):
+                    distance[index] = distance[target_min_index] + route_dis # 過去に設定されたdistanceよりも小さい場合はdistanceを更新
                     previous_nodes[index] =  target_min_index #　ひとつ前に到達するノードのリストも更新
     passlist = []
     print("-----経路-----")
