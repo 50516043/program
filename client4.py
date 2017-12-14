@@ -57,6 +57,7 @@ def rep_request_client(filename,client_socket,token_str):
     print(res_str)
     
 def time_request():
+    bandwidth_list = []
     for i in range(len(hostlist)):
         s = socket(AF_INET, SOCK_STREAM)
         s.connect((hostlist[i], ft_port))
