@@ -72,7 +72,21 @@ def time_request():
             bandwidth_list.append(tmp_list[i])  
     #print(bandwidth_list)
     return bandwidth_list
-
+def send_passlist():
+    sentence = ''
+    for i in range(len(passlist)):
+        sentence += '{} '.format(passlist[1])
+    
+    for i in range(len(hostlist)):
+        s = socket(AF_INET, SOCK_STREAM)
+        s.connect((hostlist[i], ft_port))
+        s.send('PASSLIST \n'.encode())
+        res_str = receive_data2(s)
+        print(res_str)
+        
+        s.send(sentence.encode())
+        s.close()
+    
 def shortest_path(bandwidth_list):
     a12 = float(bandwidth_list[0])
     a13 = float(bandwidth_list[1])
@@ -128,7 +142,8 @@ def shortest_path(bandwidth_list):
     print("-----距離-----")
     print(distance[node_num - 1])
 
-    print(passlist)            
+    print(passlist)
+    return passlist            
                 
 def get_target_min_index(min_index, distance, unsearched_nodes):
     start = 0
@@ -149,9 +164,10 @@ def main():#main
     server_port = int(sys.argv[2])#ポート番号
     filename = sys.argv[3]          #ファイル名
     token_str = sys.argv[4]        #トークン文字列
+    passlist = []
     
     while True:
-        print('BAND','TIME')
+        print('BAND','TIME','PATH')
         str = input('>>>')
         if str == 'BAND':
             client_socket = socket(AF_INET, SOCK_STREAM)
@@ -162,7 +178,9 @@ def main():#main
             bandwidth_list = time_request()
         elif str == 'PATH':
             #print(bandwidth_list)
-            shortest_path(bandwidth_list)
+            passlist = shortest_path(bandwidth_list)
+        elif str == 'PASSLIST':
+            send_passlist()
         else:
             break
             

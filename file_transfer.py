@@ -269,6 +269,8 @@ def interact_with_client(s):
         else:
             print('時間計測されていません')
             s.close()
+    elif word_list[0] == 'PASSLIST':
+        SEND_PASS_request(s)
     else:
          print('Invalid Command.')  
          
