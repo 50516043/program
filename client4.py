@@ -53,6 +53,15 @@ def rep_request_client(filename,client_socket,token_str):
     res_str = receive_data(client_socket)#データを受信
     print(res_str)
     
+def time_request():
+    for i in range(hostlist)
+        s = socket(AF_INET, SOCK_STREAM)
+        s.connect((hostlist[i], ft_port))
+        s.send('BANDWIDTH CALCULATION'.encode())
+        sentence = receive_data(s)
+        print(sentene)
+        s.close()
+        
 def main():#main
     if len(sys.argv) < 5:
         sys.exit('Usage: python3 client4.py [Server_Host] [PortNumber] [File_Name] [token_str]')
@@ -64,6 +73,19 @@ def main():#main
     #print(token_str)
     ft_port = 50000
     cl_port = 50001
+    
+    while True:
+        print()
+        str = input(>>>)
+        if str == 'BANDWIDTH'':
+            client_socket = socket(AF_INET, SOCK_STREAM)
+            client_socket.connect((hostlist[0], ft_port))
+            client_socket.send('BANDWIDTH CALCULATION'.encode())
+            client_socket.close()
+            time_request()
+        else:
+            break
+            
     #ファイル転送プログラムに接続
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
