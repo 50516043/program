@@ -14,7 +14,8 @@ token_str = ''
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 #clienthost = 'pbl5'  ##クライアントホスト
 #serverhost = 'pbl2'  ##サーバーホスト
-filename = ""
+sentence_time =''
+filename = ''
 cl_port = 50001
 server_port = int(sys.argv[1])  ##ポート番号
 
@@ -176,10 +177,10 @@ def band_width():#帯域幅計算
                 timelist.append(passed_time)
     #s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     #s.connect(('pbl4',server_port))
-    sentence = 'TIME {}'.format(uname)
+    sentence_time = 'TIME {}'.format(uname)
     for j in range(len(timelist)):
-        sentence += ' {}'.format(timelist[j])
-    print(sentence)
+        sentence_time += ' {}'.format(timelist[j])
+    print(sentence_time)
     #s.send(sentence.encode())
     #s.close()
         
@@ -260,7 +261,11 @@ def interact_with_client(s):
         elif word_list[1] == 'CALCULATION2':
             print('CALCULATION2')
             band_width2(s)
-            s.close() 
+            s.close()
+    elif  word_list[0] == 'TIMELIST':
+        print(sentence_time)
+        s.sned(sentence_time.decode())
+        s.close()
     else:
          print('Invalid Command.')  
          
