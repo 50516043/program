@@ -7,6 +7,7 @@ import threading  # for Thread()
 import os.path
 import sys
 import time
+from Crypto.Util.RFC1751 import wordlist
 
 passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
 token_str = ''
@@ -100,7 +101,16 @@ def nextpasslist():#次の経路があるかどうか,あれば次のホスト�
                 except:
                     nextpass = None
                 return nextpass
-
+def nexthostlist():
+    uname =  os.uname()[1]
+    for n in range(len(hostlist)):
+        if hostlist[n] == uname:
+                try:
+                    nexthost = hostlist[n+1]
+                except:
+                    nexthost = None
+                return nexthost
+            
 def SEND_FILE_request_next(server_name):
     print("Connect to" ,server_name)
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
@@ -143,7 +153,36 @@ def get_request_ft(word_list,client_socket):
     nextpass = nextpasslist()
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
-    
+
+def band_width():#帯域幅計算
+    uname =  os.uname()[1]
+    for n in range(len(hostlist)):
+        if hostlist[n] == uname:
+            for i in range(1,len(hostlist)-n):
+                client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+                client_socket.connect((hostlist[n+i],server_port))
+                print('Connect to',hostlist[n+i])
+                
+                sentence = "BANDWIDTH CALCULATION2 \n"
+                client_socket.send(sentence.encode())
+                res_str = receive_data2(client_socket)
+                print(res_str)
+                time_start = time.time()
+                data = receive_data(client_socket)
+                time_end = time.time()
+                passesd_time = time_end - time_start
+                client_socket.close()
+                print('測定時間:',passed_time)
+
+def band_width2(s):#帯域幅計算
+    sentence = 'OK \n'
+    s.send(sentence.encode())
+    for i in range(100):
+        random_number = random.randrange(256)
+        sentence2 = '{}'.format(random_number)
+        s.send(sentence2.encode())
+    s.send('\n'.encode())
+        
 def interact_with_client(s):
     print('>>>Request受信:',end ='')
     sentence = s.recv(1024).decode()#1回目のclientからの要求受信
@@ -188,7 +227,17 @@ def interact_with_client(s):
         
         s.close()
         #GET [filename] [ALL or PARTIAL] ([from]) ([to])
-    
+    elif word_list[0] == 'BANDWIDTH':
+        print('BANDWIDTH')
+        if wordlist[1] == 'CALCULATION':
+            print('CALCULATION') 
+            s.close()
+            band_width()
+        elif wordlist[1] == 'CALCULATION2':
+            print('CALCULATION2')
+            band_width2(s)
+            s.close() 
+            
 def main():
     if len(sys.argv) < 2:
         sys.exit('Usage: python3 file_transfer.py [PortNumber]')
