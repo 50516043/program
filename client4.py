@@ -10,6 +10,8 @@ import shutil
 from fileinput import filename
 
 hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
+ft_port = 50000
+cl_port = 50001
 
 def receive_data(client_socket):#データ受信関数,aの長さが0のとき終了
     response_server = bytearray()
@@ -70,9 +72,6 @@ def main():#main
     server_port = int(sys.argv[2])#ポート番号
     filename = sys.argv[3]          #ファイル名
     token_str = sys.argv[4]        #トークン文字列
-    #print(token_str)
-    ft_port = 50000
-    cl_port = 50001
     
     while True:
         print()
