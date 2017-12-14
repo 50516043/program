@@ -229,7 +229,7 @@ def interact_with_client(s):
         #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     elif word_list[0] == 'BANDWIDTH':
         print('BANDWIDTH')
-        if wordlist[1] == 'CALCULATION':
+        if word_list[1] == 'CALCULATION':
             print('CALCULATION') 
             s.close()
             band_width()
@@ -237,7 +237,9 @@ def interact_with_client(s):
             print('CALCULATION2')
             band_width2(s)
             s.close() 
-            
+    else:
+         print('Invalid Command.')  
+         
 def main():
     if len(sys.argv) < 2:
         sys.exit('Usage: python3 file_transfer.py [PortNumber]')
