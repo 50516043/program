@@ -88,6 +88,7 @@ def shortest_path(bandwidth_list):
               [a12, 0, a23, a24],
               [a13, a23, 0, a34],
               [a14, a24, a34, 0]] # 初期のノード間の距離のリスト
+    print(route_list)
     node_num = len(route_list) #ノードの数
     unsearched_nodes = list(range(node_num)) # 未探索ノード
     distance = [math.inf] * node_num # ノードごとの距離のリスト
