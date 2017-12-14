@@ -65,7 +65,7 @@ def time_request():
         print(sentence)
         tmp_list = sentence.split()
         s.close()
-        for i in range(2,len(tmp_list))
+        for i in range(2,len(tmp_list)):
             bandwidth_list.append(tmp_list[i])  
     print(bandeidth_list)
     
