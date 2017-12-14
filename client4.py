@@ -76,14 +76,13 @@ def main():#main
     while True:
         print()
         str = input('>>>')
-        if str == 'BANDWIDTH':
+        if str == 'BAND':
             client_socket = socket(AF_INET, SOCK_STREAM)
             client_socket.connect((hostlist[0], ft_port))
             client_socket.send('BANDWIDTH CALCULATION'.encode())
             client_socket.close()
+        elif str == 'TIME':
             time_request()
-        #elif str == 'TIME':
-            
         else:
             break
             
