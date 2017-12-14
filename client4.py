@@ -68,7 +68,7 @@ def time_request():
         s.close()
         for i in range(2,len(tmp_list)):
             bandwidth_list.append(tmp_list[i])  
-    print(bandeidth_list)
+    print(bandwidth_list)
     
 def main():#main
     if len(sys.argv) < 5:
