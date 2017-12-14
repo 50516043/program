@@ -11,7 +11,7 @@ import time
 passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
 token_str = ''
 #passlist = []
-hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
+hostlist = ['pbl1','pbl2','pbl3','pbl4','pblm']
 #clienthost = 'pbl5'  ##クライアントホスト
 #serverhost = 'pbl2'  ##サーバーホスト
 sentence_time = ''
@@ -233,7 +233,7 @@ def interact_with_client(s):
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-                client_socket.connect(('localhost', cl_port))
+                client_socket.connect(('localhost', cl_port))##########
                 client_socket.send(sentence.encode())
                 
         elif word_list[1] == 'PASS':
