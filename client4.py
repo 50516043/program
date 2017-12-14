@@ -76,7 +76,7 @@ def main():#main
     
     while True:
         print()
-        str = input(>>>)
+        str = input('>>>')
         if str == 'BANDWIDTH'':
             client_socket = socket(AF_INET, SOCK_STREAM)
             client_socket.connect((hostlist[0], ft_port))
