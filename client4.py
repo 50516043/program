@@ -75,7 +75,7 @@ def time_request():
 def send_passlist(passlist):
     sentence = ''
     for i in range(len(passlist)):
-        sentence += '{} '.format(passlist[1])
+        sentence += '{} '.format(passlist[i])
     
     for i in range(len(hostlist)):
         s = socket(AF_INET, SOCK_STREAM)
