@@ -198,14 +198,12 @@ def next_bandwidth():
         s.send('BANDWIDTH CALCULATION \n'.encode())
         s.close()
     
-    
 def band_width2(s):#帯域幅計算
     print('band_width2')
     sentence = 'OK \n'
     s.send(sentence.encode())
     for i in range(10000):
-        random_number = random.randrange(256)
-        sentence2 = '{}'.format(random_number)
+        sentence2 = '{}'.format(1)
         s.send(sentence2.encode())
     s.send('\n'.encode())
         
@@ -273,7 +271,6 @@ def interact_with_client(s):
             s.close()
     else:
          print('Invalid Command.')  
-         
          
 def main():
     if len(sys.argv) < 2:
