@@ -7,7 +7,7 @@ import threading  # for Thread()
 import os.path
 import sys
 import time
-from Crypto.Util.RFC1751 import wordlist
+#from Crypto.Util.RFC1751 import wordlist
 
 passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
 token_str = ''
