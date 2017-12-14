@@ -207,8 +207,9 @@ def band_width2(s):#帯域幅計算
         sentence2 = '{}'.format(1)
         s.send(sentence2.encode())
     s.send('\n'.encode())
+
 def info_res(s):
-    globalal clienthost
+    global clienthost
     sentence = receive_data2(s)
     tmp_list = sentence.split()
     clienthost = tmp_list[1]
