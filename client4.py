@@ -157,6 +157,16 @@ def get_target_min_index(min_index, distance, unsearched_nodes):
         else:
             start = index + 1
     
+def send_info():
+    uname =  os.uname()[1]
+    sentence = '{} {} \n'.format('client',uname)
+    for i in range(len(hostlist)):
+        s = socket(AF_INET, SOCK_STREAM)
+        s.connect((hostlist[i], ft_port))
+        s.send('INFO \n'.encode())
+        
+        s.send(sentence.encode())
+        s.close()
     
 def main():#main
     if len(sys.argv) < 5:

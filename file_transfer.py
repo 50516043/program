@@ -12,7 +12,7 @@ passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
 token_str = ''
 #passlist = []
 hostlist = ['pbl1','pbl2','pbl3','pbl4']
-#clienthost = 'pbl5'  ##クライアントホスト
+clienthost = ''  ##クライアントホスト
 #serverhost = 'pbl2'  ##サーバーホスト
 sentence_time = ''
 filename = ''
@@ -207,7 +207,13 @@ def band_width2(s):#帯域幅計算
         sentence2 = '{}'.format(1)
         s.send(sentence2.encode())
     s.send('\n'.encode())
-        
+def info_res(s):
+    globalal clienthost
+    sentence = receive_data2(s)
+    tmp_list = sentence.split()
+    clienthost = tmp_list[1]
+    print('clienthost',clienthost)
+    
 def interact_with_client(s):
     print('>>>Request受信:',end ='')
     sentence = s.recv(1024).decode()#1回目のclientからの要求受信
@@ -272,6 +278,9 @@ def interact_with_client(s):
             s.close()
     elif word_list[0] == 'PASSLIST':
         SEND_PASS_request(s)
+    elif word_list[0] == 'INFO':
+        info_res(s)
+        s.close()
     else:
          print('Invalid Command.')  
          
