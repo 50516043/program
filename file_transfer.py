@@ -171,7 +171,7 @@ def band_width():#帯域幅計算
                 time_start = time.time()
                 data = receive_data(client_socket)
                 time_end = time.time()
-                passesd_time = time_end - time_start
+                passed_time = time_end - time_start
                 client_socket.close()
                 print('測定時間:',passed_time)
 
