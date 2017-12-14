@@ -138,6 +138,7 @@ def SEND_FILE_request(word_list,s):#SEND,データを受け取る
     print('ファイル書き込み')
     
 def SEND_PASS_request(s):
+    global passlist
     s.send("OK \n".encode())
     sentence = receive_data(s)
     passlist = sentence.split()
