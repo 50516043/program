@@ -63,8 +63,12 @@ def time_request():
         s.send('TIMELIST'.encode())
         sentence = receive_data(s)
         print(sentence)
+        tmp_list = sentence.split()
         s.close()
-        
+        for i in range(2,len(tmp_list))
+            bandwidth_list.append(tmp_list[i])  
+    print(bandeidth_list)
+    
 def main():#main
     if len(sys.argv) < 5:
         sys.exit('Usage: python3 client4.py [Server_Host] [PortNumber] [File_Name] [token_str]')
@@ -82,7 +86,7 @@ def main():#main
             client_socket.connect((hostlist[0], ft_port))
             client_socket.send('BANDWIDTH CALCULATION'.encode())
             client_socket.close()
-        #elif str == 'TIME':
+        elif str == 'TIME':
             time_request()
         else:
             break
