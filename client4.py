@@ -177,6 +177,7 @@ def main():#main
     filename = sys.argv[3]          #ファイル名
     token_str = sys.argv[4]        #トークン文字列
     passlist = []
+    send_info()
     
     while True:
         print('BAND','TIME','PATH','PASSLIST')
