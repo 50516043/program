@@ -63,7 +63,7 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         
         if(res_str.split()[0] == 'OK'):#OK
             ALL_file_data = receive_data(client_socket)#ファイルデータ受信
-            f = open(filename,'w')
+            f = open('filedata.dat','w')
             f.write(ALL_file_data)
             f.close()
         elif(res_str.split()[0] == 'NG'):#NG
