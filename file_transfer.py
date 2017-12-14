@@ -242,8 +242,8 @@ def interact_with_client(s):
                 print('next')
                 s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
                 print('nexthost is',nexthost)
-                s.connect((nexthost,50000))
-                s.send('BANDWIDTH CALCULATION \n')
+                s.connect((nexthost,server_port))
+                s.send('BANDWIDTH CALCULATION \n'.encode())
                 s.close()
         elif word_list[1] == 'CALCULATION2':
             print('CALCULATION2')
