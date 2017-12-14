@@ -264,7 +264,7 @@ def interact_with_client(s):
             s.close()
     elif  word_list[0] == 'TIMELIST':
         print(sentence_time)
-        s.sned(sentence_time.decode())
+        s.send(sentence_time.decode())
         s.close()
     else:
          print('Invalid Command.')  
