@@ -141,7 +141,7 @@ def shortest_path(bandwidth_list):
     
     print("-----距離-----")
     print(distance[node_num - 1])
-    fot i in range(len(passlist),0)
+    fot i in range(len(passlist),0):
         tmp_passlist = passlist[i]
     print(tmp_passlist)
     return tmp_passlist            
