@@ -82,7 +82,7 @@ def main():#main
             client_socket.connect((hostlist[0], ft_port))
             client_socket.send('BANDWIDTH CALCULATION'.encode())
             client_socket.close()
-        elif str == 'TIME':
+        #elif str == 'TIME':
             time_request()
         else:
             break
