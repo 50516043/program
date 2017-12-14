@@ -142,7 +142,7 @@ def shortest_path(bandwidth_list):
     print("-----距離-----")
     print(distance[node_num - 1])
     for i in range(len(passlist),0):
-        tmp_passlist = passlist[i]
+        tmp_passlist.append(passlist[i])
     print(tmp_passlist)
     return tmp_passlist            
                 
@@ -168,7 +168,7 @@ def main():#main
     passlist = []
     
     while True:
-        print('BAND','TIME','PATH')
+        print('BAND','TIME','PATH','PASSLIST')
         str = input('>>>')
         if str == 'BAND':
             client_socket = socket(AF_INET, SOCK_STREAM)
