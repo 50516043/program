@@ -156,6 +156,7 @@ def get_request_ft(word_list,client_socket):
 
 def band_width():#帯域幅計算
     uname =  os.uname()[1]
+    print()
     for n in range(len(hostlist)):
         if hostlist[n] == uname:
             for i in range(1,len(hostlist)-n):
@@ -175,6 +176,7 @@ def band_width():#帯域幅計算
                 print('測定時間:',passed_time)
 
 def band_width2(s):#帯域幅計算
+    print('band_width2')
     sentence = 'OK \n'
     s.send(sentence.encode())
     for i in range(100):
@@ -233,7 +235,7 @@ def interact_with_client(s):
             print('CALCULATION') 
             s.close()
             band_width()
-        elif wordlist[1] == 'CALCULATION2':
+        elif word_list[1] == 'CALCULATION2':
             print('CALCULATION2')
             band_width2(s)
             s.close() 
