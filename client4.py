@@ -68,7 +68,20 @@ def time_request():
         s.close()
         for i in range(2,len(tmp_list)):
             bandwidth_list.append(tmp_list[i])  
-    print(bandwidth_list)
+    #print(bandwidth_list)
+    return bandwidth_list
+
+def shortest_path():
+    a12 = 0.1
+    a13 = 0.2
+    a14 = 0.3
+    #a15 = 0.4
+    a23 = 0.54
+    a24 = 0.2
+    #a25 = 0.06
+    a34 = 0.5
+    #a35 = 0.3
+    #a45 = 0.1
     
 def main():#main
     if len(sys.argv) < 5:
@@ -80,7 +93,7 @@ def main():#main
     token_str = sys.argv[4]        #トークン文字列
     
     while True:
-        print()
+        print('BAND','TIME')
         str = input('>>>')
         if str == 'BAND':
             client_socket = socket(AF_INET, SOCK_STREAM)
@@ -88,7 +101,10 @@ def main():#main
             client_socket.send('BANDWIDTH CALCULATION'.encode())
             client_socket.close()
         elif str == 'TIME':
-            time_request()
+            bandwidth_list = time_request()
+        elif str == 'PATH':
+            print(bandwidth_list)
+            shortest_path()
         else:
             break
             

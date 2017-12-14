@@ -11,17 +11,22 @@ a23 = 0.54
 a24 = 0.2
 a25 = 0.06
 a34 = 0.5
-a35 = 0.3
-a45 = 0.1
+#a35 = 0.3
+#a45 = 0.1
 
-route_list = [[0, a12, a13, a14, a15],
-              [a12, 0, a23, a24, a25],
-              [a13, a23, 0, a34, a35],
-              [a14, a24, a34, 0, a45],
-              [a15, a25, a35, a45, 0]] # 初期のノード間の距離のリスト
+#route_list = [[0, a12, a13, a14, a15],
+ #             [a12, 0, a23, a24, a25],
+  #            [a13, a23, 0, a34, a35],
+   #           [a14, a24, a34, 0, a45],
+    #          [a15, a25, a35, a45, 0]] # 初期のノード間の距離のリスト
 
-hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
+route_list = [[0, a12, a13, a14],
+              [a12, 0, a23, a24],
+              [a13, a23, 0, a34],
+              [a14, a24, a34, 0]] # 初期のノード間の距離のリスト
 
+#hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
+hostlist = ['pbl1','pbl2','pbl3','pbl4']
 node_num = len(route_list) #ノードの数
 
 unsearched_nodes = list(range(node_num)) # 未探索ノード
