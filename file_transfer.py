@@ -7,7 +7,6 @@ import threading  # for Thread()
 import os.path
 import sys
 import time
-#from Crypto.Util.RFC1751 import wordlist
 
 passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
 token_str = ''
@@ -156,7 +155,7 @@ def get_request_ft(word_list,client_socket):
 
 def band_width():#帯域幅計算
     uname =  os.uname()[1]
-    next_bandwidth()
+    timelist = []
     for n in range(len(hostlist)):
         if hostlist[n] == uname:
             for i in range(1,len(hostlist)-n):
@@ -174,7 +173,18 @@ def band_width():#帯域幅計算
                 passed_time = time_end - time_start
                 client_socket.close()
                 print('測定時間:',passed_time)
-                
+                timelist.append(passed_time)
+        #s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+        #s.connect(('pbl4',server_port))
+        sentence = 'TIME {}'.format(uname)
+        for j in range(len(timelist)):
+            sentence += ' {}'.format(timelist[j])
+        print(sentence)
+        #s.send(sentence.encode())
+        #s.close()
+        
+        
+    next_bandwidth()
 
 def next_bandwidth():                
     nexthost = nexthostlist()
@@ -191,7 +201,7 @@ def band_width2(s):#帯域幅計算
     print('band_width2')
     sentence = 'OK \n'
     s.send(sentence.encode())
-    for i in range(1000000):
+    for i in range(10000):
         random_number = random.randrange(256)
         sentence2 = '{}'.format(random_number)
         s.send(sentence2.encode())
