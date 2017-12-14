@@ -179,7 +179,7 @@ def band_width():#帯域幅計算
     sentence = 'TIME {}'.format(uname)
     for j in range(len(timelist)):
         sentence += ' {}'.format(timelist[j])
-        print(sentence)
+    print(sentence)
     #s.send(sentence.encode())
     #s.close()
         
