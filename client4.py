@@ -74,14 +74,14 @@ def time_request():
     return bandwidth_list
 
 def shortest_path(bandwidth_list):
-    a12 = double(bandwidth_list[0])
-    a13 = double(bandwidth_list[1])
-    a14 = double(bandwidth_list[2])
+    a12 = float(bandwidth_list[0])
+    a13 = float(bandwidth_list[1])
+    a14 = float(bandwidth_list[2])
     #a15 = 0.4
-    a23 = double(bandwidth_list[3])
-    a24 = double(bandwidth_list[4])
+    a23 = float(bandwidth_list[3])
+    a24 = float(bandwidth_list[4])
     #a25 = 0.06
-    a34 = double(bandwidth_list[5])
+    a34 = float(bandwidth_list[5])
     #a35 = 0.3
     #a45 = 0.1
     
