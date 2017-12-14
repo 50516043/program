@@ -59,7 +59,7 @@ def time_request():
     for i in range(len(hostlist)):
         s = socket(AF_INET, SOCK_STREAM)
         s.connect((hostlist[i], ft_port))
-        s.send('BANDWIDTH CALCULATION'.encode())
+        s.send('TIMELIST'.encode())
         sentence = receive_data(s)
         print(sentene)
         s.close()
@@ -82,6 +82,8 @@ def main():#main
             client_socket.send('BANDWIDTH CALCULATION'.encode())
             client_socket.close()
             time_request()
+        #elif str == 'TIME':
+            
         else:
             break
             
