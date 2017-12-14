@@ -241,7 +241,7 @@ def interact_with_client(s):
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
                 client_socket.connect((nexthost,server_port))
                 client_socket.send('BANDWIDTH CALCULATION \n')
-                
+                client_socket.close()
         elif word_list[1] == 'CALCULATION2':
             print('CALCULATION2')
             band_width2(s)
