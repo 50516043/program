@@ -54,7 +54,7 @@ def rep_request_client(filename,client_socket,token_str):
     print(res_str)
     
 def time_request():
-    for i in range(hostlist)
+    for i in range(len(hostlist))
         s = socket(AF_INET, SOCK_STREAM)
         s.connect((hostlist[i], ft_port))
         s.send('BANDWIDTH CALCULATION'.encode())
