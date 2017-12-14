@@ -174,7 +174,9 @@ def band_width():#帯域幅計算
                 passed_time = time_end - time_start
                 client_socket.close()
                 print('測定時間:',passed_time)
-
+    
+    
+    
 def band_width2(s):#帯域幅計算
     print('band_width2')
     sentence = 'OK \n'
@@ -238,11 +240,11 @@ def interact_with_client(s):
             nexthost = nexthostlist()
             if  nexthost != None:
                 print('next')
-                client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+                s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
                 print('nexthost is',nexthost)
-                client_socket.connect((nexthost,server_port))
-                client_socket.send('BANDWIDTH CALCULATION \n')
-                client_socket.close()
+                s.connect((nexthost,server_port))
+                s.send('BANDWIDTH CALCULATION \n')
+                s.close()
         elif word_list[1] == 'CALCULATION2':
             print('CALCULATION2')
             band_width2(s)
