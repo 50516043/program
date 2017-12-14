@@ -177,6 +177,7 @@ def band_width():#帯域幅計算
                 timelist.append(passed_time)
     #s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     #s.connect(('pbl4',server_port))
+    global sentence_time
     sentence_time = 'TIME {}'.format(uname)
     for j in range(len(timelist)):
         sentence_time += ' {}'.format(timelist[j])
