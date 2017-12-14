@@ -239,6 +239,7 @@ def interact_with_client(s):
             if  nexthost != None:
                 print('next')
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+                print('nexthost is',nexthost)
                 client_socket.connect((nexthost,server_port))
                 client_socket.send('BANDWIDTH CALCULATION \n')
                 client_socket.close()
