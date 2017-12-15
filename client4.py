@@ -217,6 +217,9 @@ def main():#main
     rep_sentence = receive_data2(connection_socket)
     print(rep_sentence)
     s.close()
+    time1 = get_sentence.split()[14]
+    time2 = rep_sentence.split()[12]
+    print(time1,time2)
     
     shutil.copy("filedata.dat",filename)
     
