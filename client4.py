@@ -206,7 +206,7 @@ def main():#main
             print(hostlist[0])
             client_socket = socket(AF_INET, SOCK_STREAM)
             #client_socket.connect((hostlist[0], ft_port))
-            client_socket.connect(('pbl1', ft_port))
+            client_socket.connect(('pbl2', ft_port))
             client_socket.send('BANDWIDTH CALCULATION'.encode())
             client_socket.close()
         elif str == 'TIME':
