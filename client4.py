@@ -205,7 +205,7 @@ def main():#main
         elif str == 'PASS':
             passlist = shortest_path(bandwidth_list)
             send_passlist(passlist)
-        else:
+        elif str == 'GET':
             break
             
     #ファイル転送プログラムに接続
