@@ -19,6 +19,7 @@ sentence_time = ''
 filename = ''
 cl_port = 50001
 server_port = int(sys.argv[1])  ##ポート番号
+res_str_get = ''
 
 def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
     response_server = bytearray()
@@ -55,12 +56,13 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
   
 def get_request_client(input_list,client_socket,getarg):#GETリクエスト
     if (input_list[2] == 'ALL'):#ALL
+        global res_str_get
         filename = input_list[1]
         sentence = 'GET {} {} {}\n'.format(input_list[1],getarg,'ALL')#GET filename token ALL/PARTIAL sNUM gNUM
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
-        res_str = receive_data2(client_socket)#サーバーからの応答を受信
-        print('[FROM server]\n' + res_str)
+        res_str_get = receive_data2(client_socket)#サーバーからの応答を受信
+        print('[FROM server]\n' + res_str_get)
         
         if(res_str.split()[0] == 'OK'):#OK
             ALL_file_data = receive_data(client_socket)#ファイルデータ受信
@@ -282,6 +284,9 @@ def interact_with_client(s):
         SEND_PASS_request(s)
     elif word_list[0] == 'INFO':
         info_res(s)
+        s.close()
+    elif word_list[0] == 'GETTIME':
+        s.send(res_str_get.encode())
         s.close()
     else:
          print('Invalid Command.')  

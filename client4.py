@@ -202,13 +202,20 @@ def main():#main
     GET_FILE_request(sys.argv,client_socket)
     client_socket.close()  
     
+    client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+    client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
+    client_socket.send('GETTIME \n'.encode())
+    get_sentence = receive_data2(client_socket)
+    client_socket.close()  
+    print(get_sentence)
+    
     s = socket(AF_INET, SOCK_STREAM)
     s.bind(('', cl_port))
     s.listen(1)
     print('Transmitting file...')
     connection_socket, addr = s.accept()
-    sentence = receive_data2(connection_socket)
-    print(sentence)
+    rep_sentence = receive_data2(connection_socket)
+    print(rep_sentence)
     s.close()
     
     shutil.copy("filedata.dat",filename)
