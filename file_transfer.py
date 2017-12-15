@@ -293,6 +293,7 @@ def interact_with_client(s):
     elif word_list[0] == 'INFO':
         info_res(s)
         s.close()
+        print('end')
     elif word_list[0] == 'GETTIME':
         s.send(res_str_get.encode())
         s.close()
