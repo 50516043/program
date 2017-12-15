@@ -295,6 +295,7 @@ def interact_with_client(s):
     elif word_list[0] == 'PASSLIST':
         SEND_PASS_request(s)
     elif word_list[0] == 'INFO':
+        print("a")
         info_res(s)
         s.close()
     elif word_list[0] == 'GETTIME':
