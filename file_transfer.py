@@ -14,6 +14,7 @@ passlist = ['pbl1','pbl4']#経路リスト
 token_str = ''
 #passlist = []
 hostlist2 = ['pbl1','pbl2','pbl3','pbl4']
+hostlist = []
 clienthost = ''  ##クライアントホスト
 #serverhost = 'pbl2'  ##サーバーホスト
 sentence_time = ''
@@ -215,11 +216,14 @@ def band_width2(s):#帯域幅計算
 
 def info_res(s):
     global clienthost
+    global hostlist
     sentence = receive_data2(s)
     tmp_list = sentence.split()
     clienthost = tmp_list[1]
     print(sentence)
-    print('clienthost',clienthost)
+    for i in range(len(hostlist2))
+        hostlist.append(tmp_list[i+3])
+    print(hostlist)
     
 def interact_with_client(s):
     print('>>>Request受信:',end ='')
