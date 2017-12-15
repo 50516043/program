@@ -218,6 +218,7 @@ def info_res(s):
     global clienthost
     global hostlist
     hostlist = []
+    print("a")
     sentence = receive_data2(s)
     tmp_list = sentence.split()
     clienthost = tmp_list[1]
