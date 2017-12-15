@@ -222,6 +222,7 @@ def info_res(s):
     tmp_list = sentence.split()
     clienthost = tmp_list[1]
     print(sentence)
+    prind('a')
     for i in range(len(hostlist2)):
         hostlist.append(tmp_list[i+3])
         print('a')
