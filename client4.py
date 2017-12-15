@@ -170,9 +170,9 @@ def send_info():
         s = socket(AF_INET, SOCK_STREAM)
         s.connect((hostlist[i], ft_port))
         s.send('INFO \n'.encode())
-        print(sentence)
         s.send(sentence.encode())
         s.close()
+    print(sentence)
     
 def main():#main
     if len(sys.argv) < 5:
