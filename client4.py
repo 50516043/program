@@ -66,7 +66,7 @@ def time_request():
     for i in range(len(hostlist)):
         s = socket(AF_INET, SOCK_STREAM)
         s.connect((hostlist[i], ft_port))
-        s.send('TIMELIST'.encode())
+        s.send('TIMELIST \n'.encode())
         sentence = receive_data(s)
         print(sentence)
         tmp_list = sentence.split()
