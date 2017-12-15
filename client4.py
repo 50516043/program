@@ -193,7 +193,7 @@ def main():#main
     send_info()
     
     while True:
-        print('1.BAND','2.TIME','3.PASS','4.GET'')
+        print('1.BAND','2.TIME','3.PASS','4.GET')
         str = input('>>>')
         if str == 'BAND':
             client_socket = socket(AF_INET, SOCK_STREAM)
