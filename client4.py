@@ -186,7 +186,7 @@ def main():#main
     hostlist.append(server_name)
     for n in range(len(hostlist2)):
         if server_name != hostlist2[n] and uname != hostlist2[n]:
-        hostlist.append(hostlist2[n])
+            hostlist.append(hostlist2[n])
     hostlist.append(uname)
     print(hostlist)
     
