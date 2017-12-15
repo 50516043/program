@@ -175,7 +175,6 @@ def send_info():
         s.send('INFO \n'.encode())
         s.send(sentence.encode())
         s.close()
-    print(sentence)
     
 def main():#main
     if len(sys.argv) < 5:
