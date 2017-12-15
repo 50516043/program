@@ -217,9 +217,6 @@ def main():#main
     rep_sentence = receive_data2(connection_socket)
     print(rep_sentence)
     s.close()
-    time1 = get_sentence.split()[14]
-    time2 = rep_sentence.split()[12]
-    print(time1,time2)
     
     shutil.copy("filedata.dat",filename)
     
@@ -228,8 +225,12 @@ def main():#main
     
     rep_request_client(filename,client_socket,token_str)
     
-    
     client_socket.close()  
+    
+    time1 = get_sentence.split()[14]
+    time2 = rep_sentence.split()[12]
+    print(time1,time2)
+    
     
 if __name__ == '__main__':
      main()
