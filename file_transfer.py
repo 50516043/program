@@ -218,6 +218,7 @@ def info_res(s):
     sentence = receive_data2(s)
     tmp_list = sentence.split()
     clienthost = tmp_list[1]
+    print(sentence)
     print('clienthost',clienthost)
     
 def interact_with_client(s):
