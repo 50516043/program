@@ -163,7 +163,7 @@ def get_request_ft(word_list,client_socket):
 def band_width():#帯域幅計算
     uname =  os.uname()[1]
     timelist = []
-    for n in range(len(hostlist)):
+    for n in range(len(hostlist2)):
         if hostlist[n] == uname:
             for i in range(1,len(hostlist)-n):
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
