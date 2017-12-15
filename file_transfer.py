@@ -219,7 +219,7 @@ def info_res(s):
     global hostlist
     hostlist = []
     print("a")
-    #sentence = receive_data2(s)
+    sentence = receive_data2(s)
     print("a")
     tmp_list = sentence.split()
     clienthost = tmp_list[1]
@@ -232,7 +232,7 @@ def info_res(s):
     
 def interact_with_client(s):
     print('>>>Request受信:',end ='')
-    sentence = s.recv(1024).decode()#1回目のclientからの要求受信
+    sentence = receive_data2(s)#1回目のclientからの要求受信
     print(sentence)
     word_list = sentence.split()
     
