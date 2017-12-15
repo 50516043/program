@@ -54,9 +54,9 @@ def GET_FILE_request(arg_str,client_socket):
 def rep_request_client(filename,client_socket,token_str):
     global rep_sentence
     sentence = 'REP {} {}\n'.format(filename,pbl2017.repkey(token_str,filename))
-    print(sentence)
+    #print(sentence)
     client_socket.send(sentence.encode())
-    rep_sentence = receive_data2(client_socket)#データを受信
+    rep_sentence = receive_data2(client_socket)#REP時間
     #print(rep_sentence)
     
 def time_request():
