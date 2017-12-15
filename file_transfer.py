@@ -19,7 +19,7 @@ clienthost = ''  ##クライアントホスト
 #serverhost = 'pbl2'  ##サーバーホスト
 sentence_time = ''
 filename = ''
-cl_port = 50001
+cl_port = 54901
 server_port = int(sys.argv[1])  ##ポート番号
 res_str_get = ''
 

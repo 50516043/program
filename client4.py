@@ -13,8 +13,8 @@ import os.path
 #hostlist2 = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 hostlist2 = ['pbl1','pbl2','pbl3','pbl4',]
 hostlist=[]
-ft_port = 50000
-cl_port = 50001
+ft_port = 54900
+cl_port = 54901
 rep_sentence=''
 server_name =''
 
@@ -234,7 +234,7 @@ def main():#main
     shutil.copy("filedata.dat",filename)
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-    client_socket.connect((server_name, 60623))  # サーバのソケットに接続する
+    client_socket.connect((server_name, server_port))  # サーバのソケットに接続する
     
     rep_request_client(filename,client_socket,token_str)
     client_socket.close()  
