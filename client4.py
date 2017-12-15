@@ -162,7 +162,7 @@ def get_target_min_index(min_index, distance, unsearched_nodes):
     
 def send_info():
     uname =  os.uname()[1]
-    sentence = '{} {} '.format('client',uname,'hostlist')
+    sentence = '{} {} {} '.format('client',uname,'hostlist')
     for i in range(len(hostlist)):
         sentence += '{} '.format(hostlist[i])
     sentence +='\n'
