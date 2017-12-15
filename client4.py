@@ -232,8 +232,8 @@ def main():#main
     time1 = get_sentence.split()[14]
     time2 = rep_sentence.split()[11]
     
-    timelist1 = time1.split(:)
-    timelist2 = time2.split(:)
+    timelist1 = time1.split(':')
+    timelist2 = time2.split(':')
     
     passtime = int(timelist2[0])*60*60+int(timelist2[1])*60+int(timelist2[2])-(int(timelist1[0])*60*60+int(timelist1[1])*60+int(timelist1[2]))
     
