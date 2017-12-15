@@ -13,7 +13,7 @@ import time
 passlist = ['pbl1','pbl4']#経路リスト
 token_str = ''
 #passlist = []
-hostlist = ['pbl1','pbl2','pbl3','pbl4']
+hostlist2 = ['pbl1','pbl2','pbl3','pbl4']
 clienthost = ''  ##クライアントホスト
 #serverhost = 'pbl2'  ##サーバーホスト
 sentence_time = ''

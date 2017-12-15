@@ -10,11 +10,13 @@ import shutil
 import math
 import os.path
 
-#hostlist = ['pbl1','pbl2','pbl3','pbl4','pbl5']
-hostlist = ['pbl1','pbl2','pbl3','pbl4',]
+#hostlist2 = ['pbl1','pbl2','pbl3','pbl4','pbl5']
+hostlist2 = ['pbl1','pbl2','pbl3','pbl4',]
+hostlist=[]
 ft_port = 50000
 cl_port = 50001
 rep_sentence=''
+server_name =''
 
 def receive_data(client_socket):#データ受信関数,aの長さが0のとき終了
     response_server = bytearray()
@@ -173,11 +175,21 @@ def main():#main
     if len(sys.argv) < 5:
         sys.exit('Usage: python3 client4.py [Server_Host] [PortNumber] [File_Name] [token_str]')
     
+    global server_name
+    global hostlist
     server_name = sys.argv[1]     #ホスト名
     server_port = int(sys.argv[2])#ポート番号
     filename = sys.argv[3]          #ファイル名
     token_str = sys.argv[4]        #トークン文字列
     passlist = []
+    uname =  os.uname()[1]
+    hostlist.append(server_name)
+    for n in range(len(hostlist2)):
+        if server_name != hostlist2[n] and uname != hostlist2[n]:
+        hostlist.append(hostlist2[n])
+    hostlist.append(uname)
+    print(hostlist)
+    
     send_info()
     
     while True:
