@@ -8,15 +8,11 @@ import os.path
 import sys
 import time
 
-
-#passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
-passlist = ['pbl1','pbl4']#経路リスト
+passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
 token_str = ''
-#passlist = []
 hostlist2 = ['pbl1','pbl2','pbl3','pbl4']
 hostlist = []
 clienthost = ''  ##クライアントホスト
-#serverhost = 'pbl2'  ##サーバーホスト
 sentence_time = ''
 filename = ''
 cl_port = 54901
@@ -44,7 +40,7 @@ def receive_data2(client_socket):#データ受信関数,改行で終了
             break
     receive_str = response_server.decode()
     return receive_str
-##サーバーに要求するための関数###---
+##サーバーに要求するための関数###---↓
 def size_request_client(input_list,client_socket):#SIZEリクエスト
     try:
         filename = input_list[1]
@@ -80,7 +76,6 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
         res_str = receive_data(client_socket)#サーバーからの応答を受信
-        #res_str = client_socket.recv(1024).decode()
         print('[FROM server]\n' + res_str)
         if(res_str.split()[0] == 'OK'):
             PARTIAL_file_data = receive_data(client_socket)
@@ -94,9 +89,8 @@ def rep_request_client(input_list,client_socket,token_str):
     print(sentence)
     client_socket.send(sentence.encode())
     res_str = receive_data(client_socket)#データを受信
-    #if(res_str.split()[0] == 'OK'):
     print(res_str)
-###サーバーに要求するための関数###---
+###サーバーに要求するための関数###---↑
 
 def nextpasslist():#次の経路があるかどうか,あれば次のホストを返す
     uname =  os.uname()[1]
@@ -124,7 +118,6 @@ def SEND_FILE_request_next(server_name):
     
     sentence = "SEND FILE \n"
     client_socket.send(sentence.encode())
-    #res_str = receive_data(client_socket)
     res_str = client_socket.recv(1024).decode()
     res_str_list = res_str.split()
     print(res_str)
@@ -162,6 +155,7 @@ def get_request_ft(word_list,client_socket):
         SEND_FILE_request_next(nextpass)
 
 def band_width():#帯域幅計算
+    global sentence_time
     uname =  os.uname()[1]
     timelist = []
     for n in range(len(hostlist2)):
@@ -182,17 +176,10 @@ def band_width():#帯域幅計算
                 client_socket.close()
                 print('測定時間:',passed_time)
                 timelist.append(passed_time)
-    #s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-    #s.connect(('pbl4',server_port))
-    global sentence_time
     sentence_time = 'TIME {}'.format(uname)
     for j in range(len(timelist)):
         sentence_time += ' {}'.format(timelist[j])
-    print(sentence_time)
-    #s.send(sentence.encode())
-    #s.close()
-        
-        
+    print(sentence_time) 
     next_bandwidth()
 
 def next_bandwidth():                
@@ -315,10 +302,6 @@ def main():
     print('...')
     while True:
         connection_socket, addr = server_socket.accept()
-
-    # スレッドを作り、そこで動かす関数と引数をスレッドに与える
-    #   argsに与えるのはタプル(xxx, xxx, ...)でないといけないので、
-    #   たとえ引数が一つであっても、括弧で囲い、かつ一つめの要素のあとにカンマを入れる。
         client_handler = threading.Thread(target=interact_with_client, args=(connection_socket,))
         client_handler.start()  # スレッドを開始
     
