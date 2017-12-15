@@ -230,7 +230,7 @@ def main():#main
     client_socket.close()  
     
     time1 = get_sentence.split()[14]
-    time2 = rep_sentence.split()[12]
+    time2 = rep_sentence.split()[11]
     print(time1,time2)
     
     
