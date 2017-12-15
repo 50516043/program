@@ -14,6 +14,7 @@ import os.path
 hostlist = ['pbl1','pbl2','pbl3','pbl4',]
 ft_port = 50000
 cl_port = 50001
+rep_sentence=''
 
 def receive_data(client_socket):#データ受信関数,aの長さが0のとき終了
     response_server = bytearray()
@@ -51,11 +52,12 @@ def GET_FILE_request(arg_str,client_socket):
     print(res_str)
   
 def rep_request_client(filename,client_socket,token_str):
+    global rep_sentence
     sentence = 'REP {} {}\n'.format(filename,pbl2017.repkey(token_str,filename))
     print(sentence)
     client_socket.send(sentence.encode())
-    res_str = receive_data(client_socket)#データを受信
-    print(res_str)
+    rep_sentence = receive_data2(client_socket)#データを受信
+    print(rep_sentence)
     
 def time_request():
     bandwidth_list = []
@@ -214,8 +216,8 @@ def main():#main
     s.listen(1)
     print('Transmitting file...')
     connection_socket, addr = s.accept()
-    rep_sentence = receive_data2(connection_socket)
-    print(rep_sentence)
+    sentence = receive_data2(connection_socket)
+    print(sentence)
     s.close()
     
     shutil.copy("filedata.dat",filename)
