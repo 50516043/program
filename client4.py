@@ -57,7 +57,7 @@ def rep_request_client(filename,client_socket,token_str):
     print(sentence)
     client_socket.send(sentence.encode())
     rep_sentence = receive_data2(client_socket)#データを受信
-    print(rep_sentence)
+    #print(rep_sentence)
     
 def time_request():
     bandwidth_list = []
@@ -209,7 +209,7 @@ def main():#main
     client_socket.send('GETTIME \n'.encode())
     get_sentence = receive_data2(client_socket)
     client_socket.close()  
-    print(get_sentence)
+    #print(get_sentence)
     
     s = socket(AF_INET, SOCK_STREAM)
     s.bind(('', cl_port))
@@ -217,7 +217,7 @@ def main():#main
     print('Transmitting file...')
     connection_socket, addr = s.accept()
     sentence = receive_data2(connection_socket)
-    print(sentence)
+    #print(sentence)
     s.close()
     
     shutil.copy("filedata.dat",filename)
@@ -226,12 +226,10 @@ def main():#main
     client_socket.connect((server_name, 60623))  # サーバのソケットに接続する
     
     rep_request_client(filename,client_socket,token_str)
-    
     client_socket.close()  
     
     time1 = get_sentence.split()[14]
     time2 = rep_sentence.split()[11]
-    
     timelist1 = time1.split(':')
     timelist2 = time2.split(':')
     
