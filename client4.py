@@ -193,7 +193,7 @@ def main():#main
     send_info()
     
     while True:
-        print('BAND','TIME','PATH','PASSLIST')
+        print('BAND','TIME','PATH')
         str = input('>>>')
         if str == 'BAND':
             client_socket = socket(AF_INET, SOCK_STREAM)
@@ -202,9 +202,8 @@ def main():#main
             client_socket.close()
         elif str == 'TIME':
             bandwidth_list = time_request()
-        elif str == 'PATH':
+        elif str == 'PASS':
             passlist = shortest_path(bandwidth_list)
-        elif str == 'PASSLIST':
             send_passlist(passlist)
         else:
             break
