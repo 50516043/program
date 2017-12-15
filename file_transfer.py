@@ -217,6 +217,7 @@ def band_width2(s):#帯域幅計算
 def info_res(s):
     global clienthost
     global hostlist
+    hostlist = []
     sentence = receive_data2(s)
     tmp_list = sentence.split()
     clienthost = tmp_list[1]
