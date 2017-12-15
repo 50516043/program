@@ -165,10 +165,12 @@ def send_info():
     sentence = '{} {} {} '.format('client',uname,'hostlist')
     for i in range(len(hostlist)):
         sentence += '{} '.format(hostlist[i])
-    sentence +='\n'
+    sentence += '\n'
+    
     for i in range(len(hostlist2)):
         s = socket(AF_INET, SOCK_STREAM)
         print(hostlist2[i])
+        print(sentence)
         s.connect((hostlist2[i], ft_port))
         s.send('INFO \n'.encode())
         s.send(sentence.encode())
