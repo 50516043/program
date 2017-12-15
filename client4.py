@@ -79,14 +79,11 @@ def send_passlist(passlist):
     sentence = ''
     for i in range(len(passlist)):
         sentence += '{} '.format(passlist[i])
-    
     for i in range(len(hostlist)):
         s = socket(AF_INET, SOCK_STREAM)
         s.connect((hostlist[i], ft_port))
         s.send('PASSLIST \n'.encode())
         res_str = receive_data2(s)
-        print(res_str)
-        
         s.send(sentence.encode())
         s.close()
     
@@ -208,7 +205,6 @@ def main():#main
         elif str == 'TIME':
             bandwidth_list = time_request()
         elif str == 'PATH':
-            #print(bandwidth_list)
             passlist = shortest_path(bandwidth_list)
         elif str == 'PASSLIST':
             send_passlist(passlist)
