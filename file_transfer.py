@@ -298,6 +298,8 @@ def interact_with_client(s):
         s.close()
     else:
          print('Invalid Command.')  
+    
+    print('...')
          
 def main():
     if len(sys.argv) < 2:
