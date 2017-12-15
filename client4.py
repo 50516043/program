@@ -168,6 +168,7 @@ def send_info():
     sentence +='\n'
     for i in range(len(hostlist2)):
         s = socket(AF_INET, SOCK_STREAM)
+        print(hostlist2[i])
         s.connect((hostlist2[i], ft_port))
         s.send('INFO \n'.encode())
         s.send(sentence.encode())
