@@ -218,16 +218,12 @@ def info_res(s):
     global clienthost
     global hostlist
     hostlist = []
-    print("a")
     sentence = receive_data2(s)
-    print("a")
     tmp_list = sentence.split()
     clienthost = tmp_list[1]
     print(sentence)
-    print('a')
     for i in range(len(hostlist2)):
         hostlist.append(tmp_list[i+3])
-        print('a')
     print(hostlist)
     
 def interact_with_client(s):
@@ -295,7 +291,6 @@ def interact_with_client(s):
     elif word_list[0] == 'PASSLIST':
         SEND_PASS_request(s)
     elif word_list[0] == 'INFO':
-        print("a")
         info_res(s)
         s.close()
     elif word_list[0] == 'GETTIME':
