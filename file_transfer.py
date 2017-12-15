@@ -62,6 +62,7 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
         res_str_get = receive_data2(client_socket)#サーバーからの応答を受信
+        res_str = res_str_get
         print('[FROM server]\n' + res_str_get)
         
         if(res_str.split()[0] == 'OK'):#OK
