@@ -162,12 +162,15 @@ def get_target_min_index(min_index, distance, unsearched_nodes):
     
 def send_info():
     uname =  os.uname()[1]
-    sentence = '{} {} \n'.format('client',uname)
+    sentence = '{} {} '.format('client',uname,'hostlist')
+    for i in range(len(hostlist)):
+        sentence += '{} '.format(hostlist[i])
+    sentence +='\n'
     for i in range(len(hostlist)):
         s = socket(AF_INET, SOCK_STREAM)
         s.connect((hostlist[i], ft_port))
         s.send('INFO \n'.encode())
-        
+        print(sentence)
         s.send(sentence.encode())
         s.close()
     
