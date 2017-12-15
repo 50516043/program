@@ -202,6 +202,7 @@ def main():#main
         print('BAND','TIME','PATH','PASSLIST')
         str = input('>>>')
         if str == 'BAND':
+            print(hostlist[0])
             client_socket = socket(AF_INET, SOCK_STREAM)
             client_socket.connect((hostlist[0], ft_port))
             client_socket.send('BANDWIDTH CALCULATION'.encode())
