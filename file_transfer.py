@@ -224,7 +224,7 @@ def info_res(s):
     print(sentence)
     for i in range(len(hostlist2)):
         hostlist.append(tmp_list[i+3])
-        print(a)
+        print('a')
     print(hostlist)
     
 def interact_with_client(s):
