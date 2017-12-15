@@ -199,6 +199,7 @@ def main():#main
     send_info()
     
     while True:
+        print(hostlist)
         print('BAND','TIME','PATH','PASSLIST')
         str = input('>>>')
         if str == 'BAND':
