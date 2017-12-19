@@ -8,9 +8,9 @@ import os.path
 import sys
 import time
 
-passlist = ['pbl1','pbl2','pbl3','pbl4']#経路リスト
+passlist = ['pbl1','pbl2','pbl3','pbl4','pbl5','pbl6','pbl7']#経路リスト
 token_str = ''
-hostlist2 = ['pbl1','pbl2','pbl3','pbl4']
+hostlist2 = ['pbl1','pbl2','pbl3','pbl4','pbl5','pbl6','pbl7']
 hostlist = []
 clienthost = ''  ##クライアントホスト
 sentence_time = ''
@@ -289,8 +289,8 @@ def interact_with_client(s):
     print('...')
          
 def main():
-    if len(sys.argv) < 2:
-        sys.exit('Usage: python3 file_transfer.py [PortNumber]')
+    #if len(sys.argv) < 2:
+     #   sys.exit('Usage: python3 file_transfer.py [PortNumber]')
     server_socket = socket(AF_INET, SOCK_STREAM)
     server_socket.bind(('', server_port))
     server_socket.listen(10)
