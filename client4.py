@@ -11,7 +11,7 @@ import math
 import os.path
 
 #hostlist2 = ['pbl1','pbl2','pbl3','pbl4','pbl5']
-hostlist2 = ['pbl1','pbl2','pbl3','pbl4',]
+hostlist2 = ['pbl1','pbl2','pbl3','pbl4','pbl5','pbl6','pbl7']
 hostlist=[]
 ft_port = 54900
 cl_port = 54901
@@ -88,21 +88,44 @@ def send_passlist(passlist):
         s.close()
     
 def shortest_path(bandwidth_list):
+    print(len(bandwidth_list))
     a12 = float(bandwidth_list[0])
     a13 = float(bandwidth_list[1])
     a14 = float(bandwidth_list[2])
-    #a15 = 0.4
-    a23 = float(bandwidth_list[3])
-    a24 = float(bandwidth_list[4])
-    #a25 = 0.06
-    a34 = float(bandwidth_list[5])
-    #a35 = 0.3
-    #a45 = 0.1
+    a15 = float(bandwidth_list[3])
+    a16 = float(bandwidth_list[4])
+    a17 = float(bandwidth_list[5])
     
-    route_list = [[0, a12, a13, a14],
-              [a12, 0, a23, a24],
-              [a13, a23, 0, a34],
-              [a14, a24, a34, 0]] # 初期のノード間の距離のリスト
+    a23 = float(bandwidth_list[6])
+    a24 = float(bandwidth_list[7])
+    a25 = float(bandwidth_list[8])
+    a26 = float(bandwidth_list[9])
+    a27 = float(bandwidth_list[10])
+    
+    a34 = float(bandwidth_list[11])
+    a35 = float(bandwidth_list[12])
+    a36 = float(bandwidth_list[13])
+    a37 = float(bandwidth_list[14])
+    
+    a45 = float(bandwidth_list[15])
+    a46 = float(bandwidth_list[16])
+    a47 = float(bandwidth_list[17])
+    
+    a56 = float(bandwidth_list[18])
+    a57 = float(bandwidth_list[19])
+    
+    a67 = float(bandwidth_list[20])
+    
+    route_list = [[0, a12, a13, a14, a15, a16, a17],
+                 [a12, 0,  a23, a24, a25, a26, a27],
+                 [a13, a23, 0, a34 ,a35 , a36, a37],
+                 [a14, a24, a34, 0, a45 , a46, a47],
+                 [a15, a25, a35, a45, 0,  a56, a57],
+                 [a16, a26, a36, a46, a56 , 0, a67],
+                 [a17, a27, a37, a47, a57 , a67,0]] 
+    
+    
+    # 初期のノード間の距離のリスト
     #print(route_list)
     node_num = len(route_list) #ノードの数
     unsearched_nodes = list(range(node_num)) # 未探索ノード
