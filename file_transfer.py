@@ -210,6 +210,7 @@ def info_res(s):
     clienthost = tmp_list[1]
     print(sentence)
     for i in range(len(hostlist)):
+        print(tmp_list[i+3])
         hostlist.append(tmp_list[i+3])
         
     print(hostlist)
