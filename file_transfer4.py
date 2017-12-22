@@ -150,7 +150,7 @@ def get_request_ft(word_list,client_socket):
     getarg = word_list[2]
     input_list = sentence.split()
     get_request_client(input_list,client_socket,getarg)
-    nextpass = nextpasslist()#
+    nextpass = nextpasslist()
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
 
@@ -183,7 +183,7 @@ def band_width():#帯域幅計算
     next_bandwidth()
 
 def next_bandwidth():                
-    nexthost = nexthostlist()#
+    nexthost = nexthostlist()
     if  nexthost != None:
         print('next')
         s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
