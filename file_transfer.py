@@ -92,7 +92,7 @@ def rep_request_client(input_list,client_socket,token_str):
     print(res_str)
 ###サーバーに要求するための関数###---↑
 
-def nextpasslist():#次の経路があるかどうか,あれば次のホストを返す
+def nextlist(passlist):#次の経路があるかどうか,あれば次のホストを返す
     uname =  os.uname()[1]
     for n in range(len(passlist)):
         if passlist[n] == uname:
@@ -101,15 +101,15 @@ def nextpasslist():#次の経路があるかどうか,あれば次のホスト�
                 except:
                     nextpass = None
                 return nextpass
-def nexthostlist():
-    uname =  os.uname()[1]
-    for n in range(len(hostlist)):
-        if hostlist[n] == uname:
-                try:
-                    nexthost = hostlist[n+1]
-                except:
-                    nexthost = None
-                return nexthost
+#def nexthostlist():
+#    uname =  os.uname()[1]
+#    for n in range(len(hostlist)):
+#        if hostlist[n] == uname:
+#                try:
+#                    nexthost = hostlist[n+1]
+#                except:
+#                    nexthost = None
+#                return nexthost
             
 def SEND_FILE_request_next(server_name):
     print("Connect to" ,server_name)
@@ -150,7 +150,11 @@ def get_request_ft(word_list,client_socket):
     getarg = word_list[2]
     input_list = sentence.split()
     get_request_client(input_list,client_socket,getarg)
+<<<<<<< HEAD
     nextpass = nextpasslist()#
+=======
+    nextpass = nextlist(passlist)
+>>>>>>> 388c85f993a156806efcd7c1489001e6928fb833
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
 
@@ -183,7 +187,11 @@ def band_width():#帯域幅計算
     next_bandwidth()
 
 def next_bandwidth():                
+<<<<<<< HEAD
     nexthost = nexthostlist()#
+=======
+    nexthost = nextlist(hostlist)
+>>>>>>> 388c85f993a156806efcd7c1489001e6928fb833
     if  nexthost != None:
         print('next')
         s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
@@ -208,9 +216,13 @@ def info_res(s):
     sentence = receive_data2(s)
     tmp_list = sentence.split()
     clienthost = tmp_list[1]
+    print(clienthost)
     print(sentence)
+    print(tmp_list)
     for i in range(len(hostlist2)):
+        print(tmp_list[i+3])
         hostlist.append(tmp_list[i+3])
+        
     print(hostlist)
     
 def interact_with_client(s):
@@ -231,7 +243,7 @@ def interact_with_client(s):
             SEND_FILE_request(word_list,s)
             print(">...OK")
             s.close()
-            nextpass = nextpasslist()
+            nextpass = nextlist(passlist)
             if nextpass != None:
                 print("next")
                 SEND_FILE_request_next(nextpass)
