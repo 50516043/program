@@ -5,7 +5,7 @@ expect -c "
   expect \":~\"
   send \"ssh pblm\n\"
   
-  expect \" ~]& \"
+  expect \"~]\"
   send \"ssh pbl3 \n\"
   
   expect \"~]\"
