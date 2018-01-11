@@ -170,7 +170,7 @@ def get_request_ft(word_list,client_socket):
     input_list = sentence.split()
     client_socket.close()
     s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-    s.connect(('localhost',server_port))
+    s.connect(('localhost',60623))
     get_request_client(input_list,s,getarg)
     
     nextpass = nextpasslist()
