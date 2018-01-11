@@ -77,8 +77,8 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         sentence = 'GET {} {} {} {} {}\n'.format(input_list[1],getarg,'PARTIAL',input_list[3],input_list[4])
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
-        res_str = receive_data2(client_socket)#サーバーからの応答を受信
-        res_str_get = res_str
+        res_str_get = receive_data2(client_socket)#サーバーからの応答を受信
+        res_str = res_str_get
         print(res_str,'aaaaaaaaaaaaa')#########
         print('[FROM server]\n' + res_str)
         if(res_str.split()[0] == 'OK'):
@@ -148,7 +148,7 @@ def SEND_PASS_request(s):
     print("<<経路情報更新>>")
     print(passlist)
     
-def get_request_ft(word_list,client_socket):
+def get_request_ft2(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     sentence = "GET {} {}".format(word_list[1],"ALL")
     getarg = word_list[2]
@@ -158,11 +158,11 @@ def get_request_ft(word_list,client_socket):
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
 
-def get_request_ft2(word_list,client_socket):
+def get_request_ft(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     file_size = int(size_request_client(word_list,client_socket))
     max_size = file_size -1
-    sentence = "GET {} {} {} {}".format(word_list[1],"PARTIAL","0",str(max_size))
+    sentence = "GET {} {} {} {}".format(word_list[1],'PARTIAL','0',str(max_size))
     getarg = word_list[2]
     input_list = sentence.split()
     get_request_client(input_list,client_socket,getarg)
