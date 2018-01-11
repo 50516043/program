@@ -62,6 +62,7 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
         res_str_get = receive_data2(client_socket)#サーバーからの応答を受信
+        print(res_str_get,'kansuunai')
         res_str = res_str_get
         print('[FROM server]\n' + res_str_get)
         
@@ -160,7 +161,6 @@ def get_request_ft2(word_list,client_socket):
 def get_request_ft(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     file_size = int(size_request_client(word_list,client_socket))
-    print(file_size)
     max_size = file_size -1
     sentence = "GET {} {} {} {}".format(word_list[1],"PARTIAL","0",str(max_size))
     getarg = word_list[2]
