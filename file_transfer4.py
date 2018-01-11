@@ -160,7 +160,7 @@ def get_request_ft(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     file_size = size_request_client(word_list[1],client_socket)
     
-    sentence = "GET {} {}".format(word_list[1],"PARTIAL","0",file_size)
+    sentence = "GET {} {} {} {}".format(word_list[1],"PARTIAL","0",file_size)
     getarg = word_list[2]
     input_list = sentence.split()
     get_request_client(input_list,client_socket,getarg)
