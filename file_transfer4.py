@@ -40,6 +40,19 @@ def receive_data2(client_socket):#データ受信関数,改行で終了
             break
     receive_str = response_server.decode()
     return receive_str
+
+def receive_data3(client_socket):#データ受信関数,改行で終了
+    response_server = bytearray()
+    while True:
+        a =  client_socket.recv(1)
+        if len(a)==0:
+            continue
+        response_server.append(a[0])
+        if a == b'b':
+            break
+    receive_str = response_server.decode()
+    return receive_str
+
 ##サーバーに要求するための関数###---↓
 def size_request_client(input_list,client_socket):#SIZEリクエスト
     try:
@@ -49,7 +62,7 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
         sys.exit()
     sentence = '{} {} \n'.format("SIZE",filename)
     client_socket.send(sentence.encode())
-    res_str = receive_data(client_socket)
+    res_str = receive_data3(client_socket)
     print(res_str)
     tmp_list = res_str.split()
     return tmp_list[2]
