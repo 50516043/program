@@ -62,7 +62,6 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
         res_str_get = receive_data2(client_socket)#サーバーからの応答を受信
-        print(res_str_get,'kansuunai')
         res_str = res_str_get
         print('[FROM server]\n' + res_str_get)
         
@@ -80,6 +79,7 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         client_socket.send(sentence.encode())#サーバーへリクエスト
         res_str_get = receive_data2(client_socket)#サーバーからの応答を受信
         res_str = res_str_get
+        print(res_str_get,'kansuunai')##################33
         print('[FROM server]\n' + res_str)
         if(res_str.split()[0] == 'OK'):
             PARTIAL_file_data = receive_data(client_socket)
@@ -166,6 +166,7 @@ def get_request_ft(word_list,client_socket):
     getarg = word_list[2]
     input_list = sentence.split()
     get_request_client(input_list,client_socket,getarg)
+    
     nextpass = nextpasslist()
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
