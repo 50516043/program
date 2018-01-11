@@ -40,7 +40,7 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
         sys.exit()
     sentence = '{} {} \n'.format("SIZE",filename)
     client_socket.send(sentence.encode())
-    res_str = receive_data(client_socket)#データを受信
+    res_str = receive_data2(client_socket)#データを受信
     print(res_str)
   
 def get_request_client(input_list,client_socket,token_str):#GETリクエスト
