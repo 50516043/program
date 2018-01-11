@@ -49,7 +49,7 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
         sys.exit()
     sentence = '{} {} \n'.format("SIZE",filename)
     client_socket.send(sentence.encode())
-    res_str = receive_data2(client_socket)
+    res_str = receive_data(client_socket)
     print(res_str)
     tmp_list = res_str.split()
     return tmp_list[2]
@@ -162,7 +162,7 @@ def get_request_ft2(word_list,client_socket):
 
 def get_request_ft(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
-    file_size = 100#int(size_request_client(word_list,client_socket))
+    file_size = int(size_request_client(word_list,client_socket))
     max_size = file_size -1
     sentence = "GET {} {} {} {}".format(word_list[1],'PARTIAL','0',str(max_size))
     getarg = word_list[2]
