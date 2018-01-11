@@ -253,7 +253,7 @@ def interact_with_client(s):
         s.close()
         server_port = int(word_list[3])
         client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-        client_socket.connect(('localhost',server_port))
+        client_socket.connect(('localhost',60623))
         
         get_request_ft(word_list,client_socket)
         
