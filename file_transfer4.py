@@ -168,7 +168,10 @@ def get_request_ft(word_list,client_socket):
     sentence = "GET {} {} {} {}".format(word_list[1],'PARTIAL','0',str(max_size))
     getarg = word_list[2]
     input_list = sentence.split()
-    get_request_client(input_list,client_socket,getarg)
+    client_socket.close()
+    s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+    s.connect(('localhost',server_port))
+    get_request_client(input_list,s,getarg)
     
     nextpass = nextpasslist()
     if nextpass != None:
