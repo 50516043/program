@@ -58,8 +58,7 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
     global res_str_get
     if (input_list[2] == 'ALL'):#ALL
         filename = input_list[1]
-        #sentence = 'GET {} {} {}\n'.format(input_list[1],getarg,'ALL')#GET filename token ALL/PARTIAL sNUM gNUM
-        sentence = 'GET rnd50K.txt aaa PARTIAL 0 100\n'
+        sentence = 'GET {} {} {}\n'.format(input_list[1],getarg,'ALL')#GET filename token ALL/PARTIAL sNUM gNUM
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
         res_str_get = receive_data2(client_socket)#サーバーからの応答を受信
@@ -81,13 +80,14 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         client_socket.send(sentence.encode())#サーバーへリクエスト
         res_str_get = receive_data2(client_socket)#サーバーからの応答を受信
         res_str = res_str_get
-        print(res_str,'aaaaaaaaaaaaa')#########
-        print('[FROM server]\n' + res_str)
-        if(res_str.split()[0] == 'OK'):
-            PARTIAL_file_data = receive_data(client_socket)
-            print(PARTIAL_file_data)
-            print(res_str)
-        elif(res_str.split()[0] == 'NG'):
+        print('[FROM server]\n' + res_str_get)
+        
+        if(res_str.split()[0] == 'OK'):#OK
+            ALL_file_data = receive_data(client_socket)#ファイルデータ受信
+            f = open('filedata.dat','w')
+            f.write(ALL_file_data)
+            f.close()
+        elif(res_str.split()[0] == 'NG'):#NG
             print(res_str)
 
 def rep_request_client(input_list,client_socket,token_str):
@@ -150,7 +150,7 @@ def SEND_PASS_request(s):
     print("<<経路情報更新>>")
     print(passlist)
     
-def get_request_ft(word_list,client_socket):
+def get_request_ft2(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     sentence = "GET {} {}".format(word_list[1],"ALL")
     getarg = word_list[2]
@@ -160,7 +160,7 @@ def get_request_ft(word_list,client_socket):
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
 
-def get_request_ft1(word_list,client_socket):
+def get_request_ft(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     file_size = int(size_request_client(word_list,client_socket))
     max_size = file_size -1
