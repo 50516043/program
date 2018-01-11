@@ -74,12 +74,12 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
             print(res_str)
   
     elif (input_list[2] == 'PARTIAL'):#PARTIAL
-        sentence = 'GET {} {} PARTIAL {} {}\n'.format(input_list[1],getarg,input_list[3],input_list[4])
+        sentence = 'GET {} {} {} {} {}\n'.format(input_list[1],getarg,'PARTIAL',input_list[3],input_list[4])
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
-        res_str = receive_data(client_socket)#サーバーからの応答を受信
+        res_str = receive_data2(client_socket)#サーバーからの応答を受信
         res_str_get = res_str
-        print(res_str,'aaaaaaaaaaaaa')##################33
+        print(res_str,'aaaaaaaaaaaaa')#########
         print('[FROM server]\n' + res_str)
         if(res_str.split()[0] == 'OK'):
             PARTIAL_file_data = receive_data(client_socket)
