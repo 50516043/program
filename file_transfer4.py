@@ -74,8 +74,8 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
             print(res_str)
   
     elif (input_list[2] == 'PARTIAL'):#PARTIAL
-        sentence = 'GET {0} {1} PARTIAL {2} {3}\n'.format(input_list[1],getarg,input_list[3],input_list[4])
-        print("[TOO server]\n" + sentence)
+        sentence = 'GET {} {} PARTIAL {} {}\n'.format(input_list[1],getarg,input_list[3],input_list[4])
+        print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
         res_str_get = receive_data2(client_socket)#サーバーからの応答を受信
         res_str = res_str_get
