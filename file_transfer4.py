@@ -51,7 +51,8 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
     client_socket.send(sentence.encode())
     res_str = receive_data(client_socket)
     print(res_str)
-    return res_str
+    tmp_list = res_str.split()
+    return tmp_list[2]
   
 def get_request_client(input_list,client_socket,getarg):#GETリクエスト
     global res_str_get
