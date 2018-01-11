@@ -146,7 +146,7 @@ def SEND_PASS_request(s):
     print("<<経路情報更新>>")
     print(passlist)
     
-def get_request_ft(word_list,client_socket):
+def get_request_ft2(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     sentence = "GET {} {}".format(word_list[1],"ALL","0","0")
     getarg = word_list[2]
@@ -156,7 +156,7 @@ def get_request_ft(word_list,client_socket):
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
 
-def get_request_ft2(word_list,client_socket):
+def get_request_ft(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     file_size = size_request_client(word_list[1],client_socket)
     
