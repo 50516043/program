@@ -196,7 +196,7 @@ def band_width2(s):#帯域幅計算
     print('band_width2')
     sentence = 'OK \n'
     s.send(sentence.encode())
-    for i in range(10000):
+    for i in range(50000):
         sentence2 = '{}'.format(1)
         s.send(sentence2.encode())
     s.send('\n'.encode())
@@ -252,9 +252,7 @@ def interact_with_client(s):
         server_port = int(word_list[3])
         client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
         client_socket.connect(('localhost',server_port))
-        
         get_request_ft(word_list,client_socket)
-        
         s.close()
         #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     elif word_list[0] == 'BANDWIDTH':
@@ -307,4 +305,3 @@ def main():
     
 if __name__ == '__main__':
     main()
-    
