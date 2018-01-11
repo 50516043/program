@@ -241,7 +241,7 @@ def main():#main
     client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
     client_socket.send('GETTIME \n'.encode())
     get_sentence = receive_data2(client_socket)
-    client_socket.close()  
+    client_socket.close()
     #print(get_sentence)
     
     s = socket(AF_INET, SOCK_STREAM)
