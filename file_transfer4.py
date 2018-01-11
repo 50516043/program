@@ -51,6 +51,7 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
     client_socket.send(sentence.encode())
     res_str = receive_data(client_socket)
     print(res_str)
+    return res_str
   
 def get_request_client(input_list,client_socket,getarg):#GETリクエスト
     if (input_list[2] == 'ALL'):#ALL
@@ -144,9 +145,21 @@ def SEND_PASS_request(s):
     print("<<経路情報更新>>")
     print(passlist)
     
-def get_request_ft(word_list,client_socket):
+def get_request_ft2(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     sentence = "GET {} {}".format(word_list[1],"ALL","0","0")
+    getarg = word_list[2]
+    input_list = sentence.split()
+    get_request_client(input_list,client_socket,getarg)
+    nextpass = nextpasslist()
+    if nextpass != None:
+        SEND_FILE_request_next(nextpass)
+
+def get_request_ft(word_list,client_socket):
+    #GET [filename] [ALL or PARTIAL] ([from]) ([to])
+    file_size = int(size_request_client(word_list[1],client_socket))
+    
+    sentence = "GET {} {}".format(word_list[1],"PARTIAL","0",file_size)
     getarg = word_list[2]
     input_list = sentence.split()
     get_request_client(input_list,client_socket,getarg)
@@ -223,6 +236,19 @@ def interact_with_client(s):
         print('Invalid_request')
         s.send('NG 301 Invalid command\n'.encode())
         s.close()
+    
+    elif word_list[0] == 'GETFILE':  #wordlist:GETFILE [filename] [token_strのダイジェスト] [serverport]
+        print("GETFILE")
+        #GET [filename] [ALL or PARTIAL] ([from]) ([to])
+        s.close()
+        server_port = int(word_list[3])
+        client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+        client_socket.connect(('localhost',server_port))
+        
+        get_request_ft(word_list,client_socket)
+        
+        s.close()
+        #GET [filename] [ALL or PARTIAL] ([from]) ([to])
         
     elif word_list[0] == 'SEND':#SEND FILE [filename]
         if word_list[1] == 'FILE':
@@ -245,16 +271,7 @@ def interact_with_client(s):
         elif word_list[1] == 'PASS':
             print('SEND_PASS_Request')
             SEND_PASS_request(s)
-    elif word_list[0] == 'GETFILE':  #wordlist:GETFILE [filename] [token_strのダイジェスト] [serverport]
-        print("GETFILE")
-        #GET [filename] [ALL or PARTIAL] ([from]) ([to])
-        s.close()
-        server_port = int(word_list[3])
-        client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-        client_socket.connect(('localhost',server_port))
-        get_request_ft(word_list,client_socket)
-        s.close()
-        #GET [filename] [ALL or PARTIAL] ([from]) ([to])
+            
     elif word_list[0] == 'BANDWIDTH':
         print('BANDWIDTH')
         if word_list[1] == 'CALCULATION':
