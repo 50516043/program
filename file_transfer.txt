@@ -9,3 +9,43 @@ file_transfer.py
 6.PASSLIST :
 7.INFO :
 8.GETTIME :
+
+＜関数＞
+-データ受信関数
+1.receive_data
+受信したデータの長さが０のとき終了
+
+2.receive_data2
+改行'\n'が来たら終了
+
+-サーバーに要求するための関数
+3.size_request_client
+SIZE要求->結果表示
+
+4.get_request_client
+GET要求
+
+5.rep_request_client
+REP要求
+
+6.nextpasslist
+経路情報を見て次にファイルを送るべきホストがあればそれを返し、
+なければ、Noneを返す。
+
+7.nexthostlist
+「6と同様」
+
+8.SEND_FILE_request_next
+すべてのファイルを次のホストに送る
+ 1)次のホストに接続
+ 2)'SEND FILE \n'を送る
+ 3)応答を受け取り、OKならば、送る。
+ 4)コネクションを閉じる
+
+9.SEND_FILE_request
+「8」の要求に対して、'OK'を送り、データを受け取る。
+
+10.SEND_PASS_request
+経路情報をクライアントから受け取る。
+
+11.get_request_ft

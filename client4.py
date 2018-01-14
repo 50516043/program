@@ -44,8 +44,8 @@ def GET_FILE_request(arg_str,client_socket):
     filename = arg_str[3]
     token_str = arg_str[4]
     print('token_str:',arg_str[4])
-    #getarg = pbl2017.genkey(token_str)
-    getarg = "e8cf514f7e854da883e9a26421acf2db35d455e7c6ad33435d003678abd8eb00"
+    getarg = pbl2017.genkey(token_str)
+    #getarg = "e8cf514f7e854da883e9a26421acf2db35d455e7c6ad33435d003678abd8eb00"
     print("hash:",getarg)
     sentence = '{} {} {} {} \n'.format("GETFILE",filename,getarg,int(arg_str[2]))
     #GETFILE rnd50K.txt toke_nstr server_port

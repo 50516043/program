@@ -1,0 +1,11 @@
+file_transfer.py
+
+1.SEND FILE [filename] :ファイルを送る
+2.SEND PASS :経路情報を送る
+3.GETFILE  [filename] [token_strのダイジェスト] [serverport] :サーバーにファイルを要求
+4.BANDWIDTH CALCULATION
+            CALCULATION2 :帯域幅計算
+5.TIMELIST :
+6.PASSLIST :
+7.INFO :
+8.GETTIME :
