@@ -159,11 +159,11 @@ def band_width():#帯域幅計算
     uname =  os.uname()[1]
     timelist = []
     for n in range(len(hostlist2)):
-        if hostlist[n] == uname:
-            for i in range(1,len(hostlist)-n):
+        if hostlist2[n] == uname:
+            for i in range(1,len(hostlist2)-n):
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-                client_socket.connect((hostlist[n+i],server_port))
-                print('Connect to',hostlist[n+i])
+                client_socket.connect((hostlist2[n+i],server_port))
+                print('Connect to',hostlist2[n+i])
                 
                 sentence = "BANDWIDTH CALCULATION2 \n"
                 client_socket.send(sentence.encode())
