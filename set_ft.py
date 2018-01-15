@@ -119,7 +119,7 @@ def main():#main
     #hostlist.append(uname)
     #print(hostlist)
     
-    #send_info()
+    send_info()
     print('帯域幅計測')
     
     client_socket = socket(AF_INET, SOCK_STREAM)
