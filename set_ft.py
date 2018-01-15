@@ -13,6 +13,7 @@ import os.path
 #hostlist2 = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 hostlist2 = ['pbl1','pbl2','pbl3','pbl4','pbl5','pbl6','pbl7']
 hostlist=[]
+bandwidth_list2 = []
 ft_port = 54900
 cl_port = 54901
 rep_sentence=''
