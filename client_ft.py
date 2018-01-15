@@ -100,7 +100,7 @@ def time_request():
     a57 = float(bandwidth_list[19])
     
     a67 = float(bandwidth_list[20])
-    bandwidth_time_list = = [[0, a12, a13, a14, a15, a16, a17],
+    bandwidth_time_list   = [[0, a12, a13, a14, a15, a16, a17],
                              [a12, 0,  a23, a24, a25, a26, a27],
                              [a13, a23, 0, a34 ,a35 , a36, a37],
                              [a14, a24, a34, 0, a45 , a46, a47],
