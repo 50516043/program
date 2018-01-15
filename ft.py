@@ -207,6 +207,7 @@ def info_res(s):
     hostlist = []
     sentence = receive_data2(s)
     tmp_list = sentence.split()
+    print(sentence)
     clienthost = tmp_list[1]
     print(sentence)
     for i in range(len(hostlist2)):
