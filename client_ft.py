@@ -260,7 +260,7 @@ def main():#main
     while True:
         print('1.TIME','2.PASS','3.GET')
         str = input('>>>')
-        elif str == 'TIME':
+        if str == 'TIME':
             bandwidth_list = time_request()
         elif str == 'PASS':
             passlist = shortest_path(bandwidth_list)
