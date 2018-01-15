@@ -103,7 +103,7 @@ def nextpasslist():#次の経路があるかどうか,あれば次のホスト�
                 return nextpass
 def nexthostlist():
     uname =  os.uname()[1]
-    for n in range(len(hostlist)):
+    for n in range(len(hostlist2)):
         if hostlist2[n] == uname:
                 try:
                     nexthost = hostlist2[n+1]
