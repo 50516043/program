@@ -119,16 +119,13 @@ def main():#main
     hostlist.append(uname)
     print(hostlist)
     
-    send_info()
+    #send_info()
     print('帯域幅計測')
-    while True:
-        print('1.BAND')
-        str = input('>>>')
-        if str == 'BAND':
-            client_socket = socket(AF_INET, SOCK_STREAM)
-            client_socket.connect((hostlist2[0], ft_port))
-            client_socket.send('BANDWIDTH CALCULATION \n'.encode())
-            client_socket.close()
+    
+    client_socket = socket(AF_INET, SOCK_STREAM)
+    client_socket.connect((hostlist2[0], ft_port))
+    client_socket.send('BANDWIDTH CALCULATION \n'.encode())
+    client_socket.close()
             
 if __name__ == '__main__':
      main()
