@@ -111,13 +111,13 @@ def main():#main
     #filename = sys.argv[3]          #ファイル名
     #token_str = sys.argv[4]        #トークン文字列
     #passlist = []
-    #uname =  os.uname()[1]
-    #hostlist.append(server_name)
-    #for n in range(len(hostlist2)):
-    #    if server_name != hostlist2[n] and uname != hostlist2[n]:
-    #        hostlist.append(hostlist2[n])
-    #hostlist.append(uname)
-    #print(hostlist)
+    uname =  os.uname()[1]
+    hostlist.append(server_name)
+    for n in range(len(hostlist2)):
+        if server_name != hostlist2[n] and uname != hostlist2[n]:
+            hostlist.append(hostlist2[n])
+    hostlist.append(uname)
+    print(hostlist)
     
     send_info()
     print('帯域幅計測')
