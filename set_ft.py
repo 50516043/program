@@ -10,7 +10,6 @@ import shutil
 import math
 import os.path
 
-#hostlist2 = ['pbl1','pbl2','pbl3','pbl4','pbl5']
 hostlist2 = ['pbl1','pbl2','pbl3','pbl4','pbl5','pbl6','pbl7']
 hostlist=[]
 ft_port = 54900
@@ -74,6 +73,7 @@ def time_request():
             bandwidth_list.append(tmp_list[i])  
     #print(bandwidth_list)
     return bandwidth_list
+
 def send_passlist(passlist):
     sentence = ''
     for i in range(len(passlist)):

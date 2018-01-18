@@ -68,7 +68,7 @@ def time_request():
         s.connect((hostlist2[i], ft_port))
         s.send('TIMELIST \n'.encode())
         sentence = receive_data(s)
-        print(sentence)
+        #print(sentence)
         tmp_list = sentence.split()
         s.close()
         for i in range(2,len(tmp_list)):
@@ -109,8 +109,9 @@ def time_request():
                              [a16, a26, a36, a46, a56 , 0, a67],
                              [a17, a27, a37, a47, a57 , a67,0 ]] 
     
-    print(bandwidth_time_list)
+    print('bandwidth_list',bandwidth_time_list)
     
+    print('hostlist',hostlist)
     for i in range(len(hostlist)):
         for j in range(i+1,len(hostlist)):
             bandwidth_list2.append(bandwidth_time_list[i][j]) 
@@ -254,21 +255,13 @@ def main():#main
         if server_name != hostlist2[n] and uname != hostlist2[n]:
             hostlist.append(hostlist2[n])
     hostlist.append(uname)
-    print(hostlist)
+    #print(hostlist)
     
-    #send_info()
+    send_info()
     
-    while True:
-        print('1.TIME','2.PASS','3.GET')
-        str = input('>>>')
-        if str == 'TIME':
-            bandwidth_list = time_request()
-        elif str == 'PASS':
-            passlist = shortest_path(bandwidth_list)
-            send_passlist(passlist)
-        elif str == 'GET':
-            break
-            
+    bandwidth_list = time_request()
+    passlist = shortest_path(bandwidth_list)
+    send_passlist(passlist)
     #ファイル転送プログラムに接続
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
