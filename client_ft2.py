@@ -294,12 +294,14 @@ def main():#main
     s.close()
     
     data = ''
-    
-    for ii in range(6):
+    ii=0
+    while True:
         try:
             f0 = open('{}.dat'.format(ii),'r')
             data += f0.read()
             f0.close()
+            os.remove(f0)
+            ii+=1
         except:
             break
             
