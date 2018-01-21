@@ -19,7 +19,7 @@ filename = ''
 cl_port = 54901
 server_port = 54900  ##ポート番号
 res_str_get = ''
-dev = 5
+dev = int(5)
 
 def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
     response_server = bytearray()
@@ -176,6 +176,7 @@ def get_request_ft(word_list,client_socket):
     sentence = []
     i = 0
     packet_size = int(max_size/dev)
+    print(dev)
     while True:
         j = i
         i += packet_size
