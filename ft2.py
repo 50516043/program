@@ -42,15 +42,6 @@ def receive_data2(client_socket):#データ受信関数,改行で終了
     receive_str = response_server.decode()
     return receive_str
 
-def receive_data3(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
-    response_server = bytearray()
-    while True:
-        a =  client_socket.recv(1)
-        if len(a)<=0 :
-            break
-        response_server.append(a[0])
-    #receive_str = response_server.decode()
-    return response_server
 
 ##サーバーに要求するための関数###---↓
 def size_request_client(input_list,client_socket):#SIZEリクエスト
@@ -151,9 +142,9 @@ def SEND_FILE_request_next(server_name,fn):
 
 def SEND_FILE_request(word_list,s):#SEND,データを受け取る
     s.send("OK \n".encode())#応答OK
-    ALL_file_data = receive_data3(s)#data受信
+    ALL_file_data = receive_data(s)#data受信
     tmp = ALL_file_data.split()
-    f = open(tmp[0],'wb')
+    f = open(tmp[0],'w')
     f.write(tmp[1])
     print('ファイル書き込み')
     return tmp[0] #ファイル名
