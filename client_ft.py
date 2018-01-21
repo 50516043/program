@@ -115,7 +115,7 @@ def time_request():
     print('hostlist',hostlist)
     hostnumber = []
     for i in range(len(hostlist)):
-        hostnumber.append(list[hostlist[i]][3])
+        hostnumber.append(list(hostlist[i])[3])
     print(hostnumber)
     
     for i in range(len(hostlist)):
