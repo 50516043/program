@@ -294,10 +294,16 @@ def main():#main
     s.close()
     
     data = ''
-    for ii in range(10):
-        f0 = open('{}.dat'.format(ii),'r')
-        data += f0.read()
-        f0.close()
+    ii =0
+    while True:
+        try:
+            f0 = open('{}.dat'.format(ii),'r')
+            data += f0.read()
+            f0.close()
+            ii += 1
+        except:
+            break
+            
     
     f = open(filename,'w')
     f.write(data)
