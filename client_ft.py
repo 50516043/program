@@ -18,7 +18,7 @@ ft_port = 54900
 cl_port = 54901
 rep_sentence=''
 server_name =''
-
+ 
 def receive_data(client_socket):#データ受信関数,aの長さが0のとき終了
     response_server = bytearray()
     while True:

@@ -287,7 +287,7 @@ def interact_with_client(s):
     else:
          print('Invalid Command.')  
     
-    print('...')
+    print('...') 
          
 def main():
     #if len(sys.argv) < 2:
