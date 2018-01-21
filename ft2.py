@@ -7,6 +7,7 @@ import threading  # for Thread()
 import os.path
 import sys
 import time
+import shutil
 
 passlist = ['pbl1','pbl2','pbl3','pbl4','pbl5','pbl6','pbl7']#経路リスト
 token_str = ''
