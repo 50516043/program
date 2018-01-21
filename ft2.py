@@ -19,7 +19,7 @@ filename = ''
 cl_port = 54901
 server_port = 54900  ##ポート番号
 res_str_get = ''
-
+dev = 12
 def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
     response_server = bytearray()
     while True:
@@ -174,7 +174,6 @@ def get_request_ft(word_list,client_socket):
     #sentence = "GET {} {} {} {}".format(word_list[1],'PARTIAL','0',str(max_size))
     sentence = []
     i = 0
-    dev = 10
     packet_size = int(max_size/dev)
     while True:
         j = i
@@ -282,7 +281,7 @@ def interact_with_client(s):
             if nextpass != None:
                 print("next")
                 SEND_FILE_request_next(nextpass,fn)
-            elif fn == '9.dat':
+            elif fn == '{}.dat'.format(dev-1):
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
