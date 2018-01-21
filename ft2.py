@@ -274,6 +274,7 @@ def interact_with_client(s):
         s.close()
         
     elif word_list[0] == 'SEND':#SEND FILE [filename]
+        print((tmp_dev-2))
         if word_list[1] == 'FILE':
             print('SEND_FILE_Request')
             print(">FILE受信中...")
