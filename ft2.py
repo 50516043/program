@@ -169,13 +169,13 @@ def get_request_ft(word_list,client_socket):
     input_list = sentence.split()
     client_socket.close()
     s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-    s.connect(('localhost',60623))
+    s.connect(('localhost',server_port))
     get_request_client(input_list,s,getarg)
-    
+    s.close()
     nextpass = nextpasslist()
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
-
+        
 def band_width():#帯域幅計算
     global sentence_time
     uname =  os.uname()[1]
