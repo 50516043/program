@@ -297,8 +297,8 @@ def main():#main
     ii=0
     while True:
         try:
-            print(ii)
             f0 = open('{}.dat'.format(ii),'r')
+            print(ii)
             data += f0.read()
             f0.close()
             os.remove('{}.dat'.format(ii))
