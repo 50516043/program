@@ -305,6 +305,7 @@ def interact_with_client(s):
         s.close()
     elif word_list[0] == 'GETTIME':
         s.send(res_str_get.encode())
+        print(res_str_get)
         s.close()
     else:
          print('Invalid Command.')  
