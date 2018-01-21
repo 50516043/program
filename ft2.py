@@ -167,7 +167,7 @@ def get_request_ft(word_list,client_socket):
     #sentence = "GET {} {} {} {}".format(word_list[1],'PARTIAL','0',str(max_size))
     sentence =[]
     i = 0
-    packet_size = int(max_size/4)
+    packet_size = int(max_size/5)
     while True:
         j = i
         i += packet_size
