@@ -293,7 +293,15 @@ def main():#main
     print(sentence)
     s.close()
     
-    shutil.copy("filedata.dat",filename)
+    data = ''
+    for i in range(5):
+        f0 = open('{}.dat'.format(i),'r')
+        data += f0.read()
+        f0.close()
+    
+    f = open(filename,'w')
+    f.write(data)
+    f.close()
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, server_port))  # サーバのソケットに接続する
