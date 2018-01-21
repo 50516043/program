@@ -295,7 +295,7 @@ def main():#main
     
     data = ''
     for ii in range(5):
-        f0 = open('{1}.dat'.format(ii),'r')
+        f0 = open('{}.dat'.format(ii),'r')
         data += f0.read()
         f0.close()
     
