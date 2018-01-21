@@ -275,7 +275,6 @@ def main():#main
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
     GET_FILE_request(sys.argv,client_socket)
-    print(client_socket)
     client_socket.close()  
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
@@ -286,8 +285,7 @@ def main():#main
     #print(get_sentence)
     
     s = socket(AF_INET, SOCK_STREAM)
-    s.bind(('',54901))
-    print(s)
+    s.bind(('', cl_port))
     s.listen(1)
     print('Transmitting file...')
     connection_socket, addr = s.accept()
