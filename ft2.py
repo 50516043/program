@@ -117,7 +117,7 @@ def nexthostlist():
                     nexthost = None
                 return nexthost
             
-def SEND_FILE_request_next(server_name):
+def SEND_FILE_request_next(server_name,fn):
     print("Connect to" ,server_name)
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, server_port))
@@ -129,8 +129,9 @@ def SEND_FILE_request_next(server_name):
     print(res_str)
     if res_str_list[0] == 'OK':
         print("SEND_FILE_DATA...",end='')
-        f = open('filedata.dat','r')
-        filedata = f.read()
+        f = open(fn,'r')
+        filedata = fn + ' '
+        filedata += f.read()
         client_socket.send(filedata.encode())
         print('完了！')
     client_socket.close()
@@ -138,8 +139,9 @@ def SEND_FILE_request_next(server_name):
 def SEND_FILE_request(word_list,s):#SEND,データを受け取る
     s.send("OK \n".encode())#応答OK
     ALL_file_data = receive_data(s)#data受信
-    f = open('filedata.dat','w')
-    f.write(ALL_file_data)
+    tmp = ALL_file_data.split()
+    f = open(tmp[0],'w')
+    f.write(tmp[1])
     print('ファイル書き込み')
     
 def SEND_PASS_request(s):
@@ -175,16 +177,20 @@ def get_request_ft(word_list,client_socket):
             sentence.append("GET {} {} {} {}".format(word_list[1],'PARTIAL',str(j),str(max_size)))
             break
         sentence.append("GET {} {} {} {}".format(word_list[1],'PARTIAL',str(j),str(i-1)))
-    print(sentence)
+        
     getarg = word_list[2]
-    input_list = sentence.split()
     client_socket.close()
     s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     s.connect(('localhost',60623))
-    get_request_client(input_list,s,getarg)
-    nextpass = nextpasslist()
-    if nextpass != None:
-        SEND_FILE_request_next(nextpass)
+    
+    for fn in range(5):
+        input_list = sentence[i].split()
+        get_request_client(input_list,s,getarg)
+        fn = '{}.dat'.format(i)
+        shutil.copy("filedata.dat",fn)
+        nextpass = nextpasslist()
+        if nextpass != None:
+            SEND_FILE_request_next(nextpass,fn)
 
 def band_width():#帯域幅計算
     global sentence_time
