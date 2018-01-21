@@ -109,14 +109,17 @@ def time_request():
                              [a16, a26, a36, a46, a56 , 0, a67],
                              [a17, a27, a37, a47, a57 , a67,0 ]] 
     
-    print('bandwidth_list',bandwidth_time_list)
+    print('bandwidth_list')
+    print(bandwidth_time_list)
     
     print('hostlist',hostlist)
     for i in range(len(hostlist)):
         for j in range(i+1,len(hostlist)):
             bandwidth_list2.append(bandwidth_time_list[i][j]) 
              
-    #print("bandwidth_list",bandwidth_list2)
+    print("bandwidth_list")
+    print(bandwidth_list2)
+    
     return bandwidth_list2
 
 def send_passlist(passlist):
