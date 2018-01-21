@@ -294,7 +294,8 @@ def main():#main
     s.close()
     
     data = ''
-    for ii in range(8):
+    
+    for ii in range(10):
         try:
             f0 = open('{}.dat'.format(ii),'r')
             data += f0.read()
