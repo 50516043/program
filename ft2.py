@@ -187,7 +187,7 @@ def get_request_ft(word_list,client_socket):
     client_socket.close()
     input_list = []
     
-    for i in range(5):##############
+    for i in range(len(sentence)):##############
         s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
         s.connect(('localhost',60623))
         input_list.append(sentence[i].split())
