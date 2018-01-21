@@ -120,7 +120,7 @@ def time_request():
     
     for i in range(len(hostlist)):
         for j in range(i+1,len(hostlist)):
-            ptint(hostnumber[i],hostnumber[j])
+            print(hostnumber[i],hostnumber[j])
             bandwidth_list2.append(bandwidth_time_list[hostnumber[i]][hostnumber[j]]) 
              
     print("bandwidth_list")
