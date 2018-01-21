@@ -189,7 +189,7 @@ def get_request_ft(word_list,client_socket):
     for i in range(5):
         input_list.append(sentence[i].split())
         get_request_client(input_list[i],s,getarg)
-        fn = '{}.dat'.format()
+        fn = '{}.dat'.format(i)
         shutil.copy("filedata.dat",fn)
         nextpass = nextpasslist()
         if nextpass != None:
