@@ -163,7 +163,7 @@ def get_request_ft2(word_list,client_socket):########
 def get_request_ft(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     file_size = int(size_request_client(word_list,client_socket))
-    max_size = file_size -1
+    max_size = file_size -2
     sentence = "GET {} {} {} {}".format(word_list[1],'PARTIAL','0',str(max_size))
     getarg = word_list[2]
     input_list = sentence.split()
