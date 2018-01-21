@@ -101,13 +101,13 @@ def send_info():
         s.close()
     
 def main():#main
-    if len(sys.argv) < 3:
-        sys.exit('Usage: python3 client4.py [Server_Host] [PortNumber]')
+    #if len(sys.argv) < 3:
+        #sys.exit('Usage: python3 client4.py [Server_Host] [PortNumber]')
     
     global server_name
     global hostlist
-    server_name = sys.argv[1]     #ホスト名
-    server_port = int(sys.argv[2])#ポート番号
+    #server_name = sys.argv[1]     #ホスト名
+    #server_port = int(sys.argv[2])#ポート番号
     #filename = sys.argv[3]          #ファイル名
     #token_str = sys.argv[4]        #トークン文字列
     #passlist = []
