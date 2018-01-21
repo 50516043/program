@@ -38,53 +38,6 @@ def receive_data2(client_socket):#データ受信関数,改行で終了
             break
     receive_str = response_server.decode()
     return receive_str
-
-def GET_FILE_request(arg_str,client_socket):
-    filename = arg_str[3]
-    token_str = arg_str[4]
-    print('token_str:',arg_str[4])
-    getarg = pbl2017.genkey(token_str)
-    print("hash:",getarg)
-    sentence = '{} {} {} {} \n'.format("GETFILE",filename,getarg,int(arg_str[2]))
-    #GETFILE rnd50K.txt toke_nstr server_port
-    client_socket.send(sentence.encode())
-    res_str = receive_data(client_socket)#データを受信
-    print(res_str)
-  
-def rep_request_client(filename,client_socket,token_str):
-    global rep_sentence
-    sentence = 'REP {} {}\n'.format(filename,pbl2017.repkey(token_str,filename))
-    #print(sentence)
-    client_socket.send(sentence.encode())
-    rep_sentence = receive_data2(client_socket)#REP時間
-    #print(rep_sentence)
-    
-def time_request():
-    bandwidth_list = []
-    for i in range(len(hostlist)):
-        s = socket(AF_INET, SOCK_STREAM)
-        s.connect((hostlist[i], ft_port))
-        s.send('TIMELIST \n'.encode())
-        sentence = receive_data(s)
-        print(sentence)
-        tmp_list = sentence.split()
-        s.close()
-        for i in range(2,len(tmp_list)):
-            bandwidth_list.append(tmp_list[i])  
-    #print(bandwidth_list)
-    return bandwidth_list
-
-def send_passlist(passlist):
-    sentence = ''
-    for i in range(len(passlist)):
-        sentence += '{} '.format(passlist[i])
-    for i in range(len(hostlist)):
-        s = socket(AF_INET, SOCK_STREAM)
-        s.connect((hostlist[i], ft_port))
-        s.send('PASSLIST \n'.encode())
-        res_str = receive_data2(s)
-        s.send(sentence.encode())
-        s.close()
     
 def send_info():
     uname =  os.uname()[1]
