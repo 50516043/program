@@ -42,7 +42,7 @@ def receive_data2(client_socket):#データ受信関数,改行で終了
     receive_str = response_server.decode()
     return receive_str
 
-def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
+def receive_data3(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
     response_server = bytearray()
     while True:
         a =  client_socket.recv(1)
