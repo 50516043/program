@@ -286,7 +286,7 @@ def main():#main
     #print(get_sentence)
     
     s = socket(AF_INET, SOCK_STREAM)
-    s.bind(('', cl_port))
+    s.bind(('',54901))
     print(s)
     s.listen(1)
     print('Transmitting file...')

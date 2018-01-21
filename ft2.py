@@ -262,7 +262,7 @@ def interact_with_client(s):
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
                 print(cl_port)
-                client_socket.connect(('localhost',cl_port))
+                client_socket.connect(('localhost',54901))
                 client_socket.send(sentence.encode())
                 
         elif word_list[1] == 'PASS':
