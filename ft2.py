@@ -119,7 +119,6 @@ def nexthostlist():
                 return nexthost
             
 def SEND_FILE_request_next(server_name,fn):
-    print(fn)
     print("Connect to" ,server_name)
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, server_port))
@@ -187,10 +186,10 @@ def get_request_ft(word_list,client_socket):
     s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     s.connect(('localhost',60623))
     input_list = []
-    for fn in range(5):
-        input_list.append(sentence[fn].split())
-        get_request_client(input_list[fn],s,getarg)
-        fn = '{}.dat'.format(i)
+    for i in range(5):
+        input_list.append(sentence[i].split())
+        get_request_client(input_list[i],s,getarg)
+        fn = '{}.dat'.format()
         shutil.copy("filedata.dat",fn)
         nextpass = nextpasslist()
         if nextpass != None:
