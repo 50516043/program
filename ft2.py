@@ -49,14 +49,12 @@ def size_request_client(input_list,client_socket):#SIZEリクエスト
         sys.exit()
     sentence = '{} {} \n'.format("SIZE",filename)
     client_socket.send(sentence.encode())
-    res_str = receive_data2(client_socket)
+    res_str = receive_data(client_socket)
     print(res_str)
-    tmp_list = res_str.split()
-    return tmp_list[2]
-
+  
 def get_request_client(input_list,client_socket,getarg):#GETリクエスト
-    global res_str_get
     if (input_list[2] == 'ALL'):#ALL
+        global res_str_get
         filename = input_list[1]
         sentence = 'GET {} {} {}\n'.format(input_list[1],getarg,'ALL')#GET filename token ALL/PARTIAL sNUM gNUM
         print("[TO server]\n" + sentence)
@@ -74,20 +72,16 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
             print(res_str)
   
     elif (input_list[2] == 'PARTIAL'):#PARTIAL
-        #sentence = 'GET {} {} {} {} {}\n'.format(input_list[1],getarg,'PARTIAL',input_list[3],input_list[4])
-        sentence = 'GET rnd50K.txt aaa PARTIAL 0 100\n'
+        sentence = 'GET {0} {1} PARTIAL {2} {3}\n'.format(input_list[1],getarg,input_list[3],input_list[4])
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
-        res_str_get = receive_data2(client_socket)#サーバーからの応答を受信
-        res_str = res_str_get
-        print('[FROM server]\n' + res_str_get)
-        
-        if(res_str.split()[0] == 'OK'):#OK
-            ALL_file_data = receive_data(client_socket)#ファイルデータ受信
-            f = open('filedata.dat','w')
-            f.write(ALL_file_data)
-            f.close()
-        elif(res_str.split()[0] == 'NG'):#NG
+        res_str = receive_data(client_socket)#サーバーからの応答を受信
+        print('[FROM server]\n' + res_str)
+        if(res_str.split()[0] == 'OK'):
+            PARTIAL_file_data = receive_data(client_socket)
+            print(PARTIAL_file_data)
+            print(res_str)
+        elif(res_str.split()[0] == 'NG'):
             print(res_str)
 
 def rep_request_client(input_list,client_socket,token_str):
@@ -150,7 +144,7 @@ def SEND_PASS_request(s):
     print("<<経路情報更新>>")
     print(passlist)
     
-def get_request_ft2(word_list,client_socket):#############3
+def get_request_ft(word_list,client_socket):
     #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     sentence = "GET {} {}".format(word_list[1],"ALL","0","0")
     getarg = word_list[2]
@@ -160,21 +154,6 @@ def get_request_ft2(word_list,client_socket):#############3
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
 
-def get_request_ft(word_list,client_socket):
-    #GET [filename] [ALL or PARTIAL] ([from]) ([to])
-    file_size = int(size_request_client(word_list,client_socket))
-    max_size = file_size -1
-    sentence = "GET {} {} {} {}".format(word_list[1],'PARTIAL','0',str(max_size))
-    getarg = word_list[2]
-    input_list = sentence.split()
-    client_socket.close()
-    s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-    s.connect(('localhost',60623))
-    get_request_client(input_list,s,getarg)
-    nextpass = nextpasslist()
-    if nextpass != None:
-        SEND_FILE_request_next(nextpass)
-        
 def band_width():#帯域幅計算
     global sentence_time
     uname =  os.uname()[1]
@@ -261,8 +240,7 @@ def interact_with_client(s):
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-                print(cl_port)
-                client_socket.connect(('localhost',54901))
+                client_socket.connect((clienthost, cl_port))
                 client_socket.send(sentence.encode())
                 
         elif word_list[1] == 'PASS':
@@ -305,7 +283,6 @@ def interact_with_client(s):
         s.close()
     elif word_list[0] == 'GETTIME':
         s.send(res_str_get.encode())
-        print(res_str_get)
         s.close()
     else:
          print('Invalid Command.')  
