@@ -194,7 +194,7 @@ def get_request_ft(word_list,client_socket):
         nextpass = nextpasslist()
         if nextpass != None:
             SEND_FILE_request_next(nextpass,fn)
-        s.close()
+        #s.close()
         
             
 def band_width():#帯域幅計算
