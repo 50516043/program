@@ -167,18 +167,16 @@ def get_request_ft(word_list,client_socket):
     file_size = int(size_request_client(word_list,client_socket))
     max_size = file_size -1
     #sentence = "GET {} {} {} {}".format(word_list[1],'PARTIAL','0',str(max_size))
-    sentence =[]
+    sentence = []
     i = 0
-    n=0
     packet_size = int(max_size/5)
     while True:
         j = i
         i += packet_size
         if i >= max_size:
-            sentence[n].append("GET {} {} {} {}".format(word_list[1],'PARTIAL',str(j),str(max_size)))
+            sentence.append("GET {} {} {} {}".format(word_list[1],'PARTIAL',str(j),str(max_size)))
             break
-        sentence[n].append("GET {} {} {} {}".format(word_list[1],'PARTIAL',str(j),str(i-1)))
-        n+=1
+        sentence.append("GET {} {} {} {}".format(word_list[1],'PARTIAL',str(j),str(i-1)))
         
     getarg = word_list[2]
     client_socket.close()
