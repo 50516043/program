@@ -174,7 +174,7 @@ def get_request_ft(word_list,client_socket):
     #sentence = "GET {} {} {} {}".format(word_list[1],'PARTIAL','0',str(max_size))
     sentence = []
     i = 0
-    packet_size = int(max_size/5)
+    packet_size = int(max_size/6)
     while True:
         j = i
         i += packet_size
@@ -187,7 +187,7 @@ def get_request_ft(word_list,client_socket):
     client_socket.close()
     input_list = []
     
-    for i in range(5):##############
+    for i in range(6):##############
         s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
         s.connect(('localhost',60623))
         input_list.append(sentence[i].split())
@@ -281,7 +281,7 @@ def interact_with_client(s):
             if nextpass != None:
                 print("next")
                 SEND_FILE_request_next(nextpass,fn)
-            elif fn == '4.dat':
+            elif fn == '5.dat':
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
