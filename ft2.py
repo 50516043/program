@@ -171,7 +171,6 @@ def get_request_ft(word_list,client_socket):
     s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     s.connect(('localhost',server_port))
     get_request_client(input_list,s,getarg)
-    s.close()
     nextpass = nextpasslist()
     if nextpass != None:
         SEND_FILE_request_next(nextpass)
@@ -278,7 +277,7 @@ def interact_with_client(s):
         
         get_request_ft(word_list,client_socket)
         
-        s.close()
+        client_socket.close()
         #GET [filename] [ALL or PARTIAL] ([from]) ([to])
     elif word_list[0] == 'BANDWIDTH':
         print('BANDWIDTH')
