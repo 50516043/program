@@ -182,9 +182,8 @@ def get_request_ft(word_list,client_socket):
     client_socket.close()
     s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     s.connect(('localhost',60623))
-    input_list = []
+    input_list = [[]]
     for fn in range(5):
-        input_list[fn]=[]
         input_list[fn] = sentence[i].split()
         get_request_client(input_list[fn],s,getarg)
         fn = '{}.dat'.format(i)
