@@ -144,6 +144,7 @@ def SEND_FILE_request(word_list,s):#SEND,データを受け取る
     f = open(tmp[0],'w')
     f.write(tmp[1])
     print('ファイル書き込み')
+    return tmp[0] #ファイル名
     
 def SEND_PASS_request(s):
     global passlist
@@ -268,13 +269,13 @@ def interact_with_client(s):
         if word_list[1] == 'FILE':
             print('SEND_FILE_Request')
             print(">FILE受信中...")
-            SEND_FILE_request(word_list,s)
+            fn = SEND_FILE_request(word_list,s)
             print(">...OK")
             s.close()
             nextpass = nextpasslist()
             if nextpass != None:
                 print("next")
-                SEND_FILE_request_next(nextpass)
+                SEND_FILE_request_next(nextpass,fn)
             else:
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
