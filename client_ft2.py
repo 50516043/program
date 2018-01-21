@@ -290,7 +290,7 @@ def main():#main
     print('Transmitting file...')
     connection_socket, addr = s.accept()
     sentence = receive_data2(connection_socket)
-    #print(sentence)
+    print(sentence)
     s.close()
     
     shutil.copy("filedata.dat",filename)
