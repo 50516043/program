@@ -296,11 +296,11 @@ def main():#main
     data = ''
     for i in range(5):
         f0 = open('{}.dat'.format(i),'r')
-        data += f0.read().encode()
+        data += f0.read().decode()
         f0.close()
     
     f = open(filename,'w')
-    f.write(data.decode())
+    f.write(data.encode())
     f.close()
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
