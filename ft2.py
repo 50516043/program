@@ -184,7 +184,7 @@ def get_request_ft(word_list,client_socket):
     s.connect(('localhost',60623))
     input_list = []
     for fn in range(5):
-        input_list.append(sentence[i].split())
+        input_list.append(sentence[fn].split())
         get_request_client(input_list[fn],s,getarg)
         fn = '{}.dat'.format(i)
         shutil.copy("filedata.dat",fn)
