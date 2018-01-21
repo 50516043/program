@@ -182,18 +182,19 @@ def get_request_ft(word_list,client_socket):
         sentence.append("GET {} {} {} {}".format(word_list[1],'PARTIAL',str(j),str(i-1)))
         
     getarg = word_list[2]
-    #client_socket.close()
-    #s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-    #s.connect(('localhost',60623))
+    client_socket.close()
     input_list = []
     for i in range(5):
+        s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+        s.connect(('localhost',60623))
         input_list.append(sentence[i].split())
-        get_request_client(input_list[i],client_socket,getarg)
+        get_request_client(input_list[i],s,getarg)
         fn = '{}.dat'.format(i)
         shutil.copy("filedata.dat",fn)
         nextpass = nextpasslist()
         if nextpass != None:
             SEND_FILE_request_next(nextpass,fn)
+        s.close()
 
 def band_width():#帯域幅計算
     global sentence_time
