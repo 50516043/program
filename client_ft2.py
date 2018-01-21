@@ -286,6 +286,7 @@ def main():#main
     
     s = socket(AF_INET, SOCK_STREAM)
     s.bind(('', cl_port))
+    print(s)
     s.listen(1)
     print('Transmitting file...')
     connection_socket, addr = s.accept()
