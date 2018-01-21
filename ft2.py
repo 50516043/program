@@ -119,6 +119,7 @@ def nexthostlist():
                 return nexthost
             
 def SEND_FILE_request_next(server_name,fn):
+    print(fn)
     print("Connect to" ,server_name)
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, server_port))
