@@ -19,7 +19,7 @@ filename = ''
 cl_port = 54901
 server_port = 54900  ##ポート番号
 res_str_get = ''
-dev = 12
+dev = 6
 def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
     response_server = bytearray()
     while True:
