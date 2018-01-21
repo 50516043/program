@@ -301,7 +301,7 @@ def main():#main
             f0 = open('{}.dat'.format(ii),'r')
             data += f0.read()
             f0.close()
-            os.remove(f0)
+            os.remove('{}.dat'.format(ii))
             ii+=1
         except:
             break
