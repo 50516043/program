@@ -283,9 +283,6 @@ def main():#main
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
     GET_FILE_request(sys.argv,client_socket)
-    #client_socket.close()  
-    
-    #rint(get_sentence)
     client_socket.close()
     
     s = socket(AF_INET, SOCK_STREAM)
