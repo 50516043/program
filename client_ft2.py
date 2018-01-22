@@ -290,7 +290,7 @@ def main():#main
     s.send('GETTIME \n'.encode())
     get_sentence = receive_data2(s)
     s.close()
-    #print(get_sentence)
+    #rint(get_sentence)
     client_socket.close()
     
     s = socket(AF_INET, SOCK_STREAM)
