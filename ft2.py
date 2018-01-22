@@ -20,7 +20,7 @@ cl_port = 54901
 server_port = 54900  ##ポート番号
 res_str_get = ''
 dev = 5
-tmp_dev = 10
+tmp_dev = 5
 
 def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
     response_server = bytearray()
@@ -342,7 +342,7 @@ def interact_with_client(s):
         s.send(res_str_get.encode())
         s.close()
     elif word_list[0] == 'DEL':
-        for i in range(5):
+        for i in range(10):
             try:
                 os.remove('{}.dat'.format(i))  
             except:
