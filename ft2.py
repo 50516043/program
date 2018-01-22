@@ -181,7 +181,7 @@ def get_request_ft(word_list,client_socket):
     while True:
         j = i
         i += packet_size
-        if i >= max_size:
+        if i > max_size:
             sentence.append("GET {} {} {} {}".format(word_list[1],'PARTIAL',str(j),str(max_size)))
             break
         sentence.append("GET {} {} {} {}".format(word_list[1],'PARTIAL',str(j),str(i-1)))
