@@ -301,11 +301,12 @@ def main():#main
             print(ii)
             data += f0.read()
             f0.close()
-            os.remove('{}.dat'.format(ii))
             ii+=1
         except:
             break
-            
+    
+    for i in range(ii):
+        os.remove('{}.dat'.format(i))        
     
     f = open(filename,'w')
     f.write(data)
