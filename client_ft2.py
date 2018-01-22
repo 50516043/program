@@ -246,6 +246,14 @@ def send_info():
         s.send('INFO \n'.encode())
         s.send(sentence.encode())
         s.close()
+
+def send_del():
+    for i in range(len(hostlist2)):
+        s = socket(AF_INET, SOCK_STREAM)
+        s.connect((hostlist2[i], ft_port))
+        s.send('DEL \n'.encode())
+        s.send(sentence.encode())
+        s.close()
     
 def main():#main
     if len(sys.argv) < 5:
@@ -266,6 +274,7 @@ def main():#main
     hostlist.append(uname)
     #print(hostlist)
     
+    send_del()
     send_info()
     
     bandwidth_list = time_request()

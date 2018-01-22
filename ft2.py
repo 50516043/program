@@ -334,6 +334,11 @@ def interact_with_client(s):
     elif word_list[0] == 'GETTIME':
         s.send(res_str_get.encode())
         s.close()
+    eilf word_list[0] == 'DEL':
+        for i in range(6):
+        os.remove('{}.dat'.format(i))  
+        s.close()
+    
     else:
          print('Invalid Command.')  
     
