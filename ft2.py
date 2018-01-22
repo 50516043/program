@@ -333,7 +333,7 @@ def interact_with_client(s):
         s.close()
     elif word_list[0] == 'GETTIME':
         s.send(res_str_get.encode())
-        print(res_str_get
+        print(res_str_get)
         s.close()
     elif word_list[0] == 'DEL':
         for i in range(6):
