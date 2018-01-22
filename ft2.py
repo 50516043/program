@@ -339,7 +339,7 @@ def interact_with_client(s):
             try:
                 os.remove('{}.dat'.format(i))  
             except:
-                break
+                pass
         s.close()
     
     else:
