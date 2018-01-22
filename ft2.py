@@ -20,7 +20,7 @@ cl_port = 54901
 server_port = 54900  ##ポート番号
 res_str_get = ''
 dev = 5
-tmp_dev = 6
+tmp_dev = 10
 
 def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
     response_server = bytearray()
@@ -177,7 +177,7 @@ def get_request_ft(word_list,client_socket):
     sentence = []
     i = 0
     global tmp_dev
-    packet_size = int(max_size/dev)
+    packet_size = int(max_size/tmp_dev)
     while True:
         j = i
         i += packet_size
@@ -286,12 +286,19 @@ def interact_with_client(s):
                 print("next")
                 SEND_FILE_request_next(nextpass,fn)
             #elif fn == '{}.dat'.format(5):
-            elif os.path.isfile('0.dat')and os.path.isfile('1.dat')and os.path.isfile('2.dat') and os.path.isfile('3.dat')and os.path.isfile('4.dat')and os.path.isfile('5.dat'):
-                sentence = "ALL FILE RECEIVED \n"
-                print(sentence)
-                client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-                client_socket.connect((clienthost, cl_port))
-                client_socket.send(sentence.encode())
+            else:
+                for i in range(tmp_dev):
+                    if os.path.isfile('{}.dat'.format(i)):
+                        continue
+                    else:
+                        break
+                
+                if i == tmp_dev:
+                    sentence = "ALL FILE RECEIVED \n"
+                    print(sentence)
+                    client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+                    client_socket.connect((clienthost, cl_port))
+                    client_socket.send(sentence.encode())
                 
         elif word_list[1] == 'PASS':
             print('SEND_PASS_Request')
@@ -335,7 +342,7 @@ def interact_with_client(s):
         s.send(res_str_get.encode())
         s.close()
     elif word_list[0] == 'DEL':
-        for i in range(6):
+        for i in range(20):
             try:
                 os.remove('{}.dat'.format(i))  
             except:
