@@ -286,7 +286,7 @@ def interact_with_client(s):
             if nextpass != None:
                 print("next")
                 SEND_FILE_request_next(nextpass,fn)
-            elif fn == '{}.dat'.format(6-1):
+            elif fn == '{}.dat'.format(6):
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
