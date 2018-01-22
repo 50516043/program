@@ -289,6 +289,7 @@ def main():#main
     s.connect((server_name, ft_port))  # サーバのソケットに接続する
     s.send('GETTIME \n'.encode())
     get_sentence = receive_data2(s)
+    get_sentence = receive_data2(s)
     s.close()
     #rint(get_sentence)
     client_socket.close()
