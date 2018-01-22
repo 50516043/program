@@ -293,7 +293,7 @@ def interact_with_client(s):
                     else:
                         break
                 
-                if i == tmp_dev:
+                if i == tmp_dev-1:
                     sentence = "ALL FILE RECEIVED \n"
                     print(sentence)
                     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
