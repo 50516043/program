@@ -363,5 +363,7 @@ def main():
         connection_socket, addr = server_socket.accept()
         client_handler = threading.Thread(target=interact_with_client, args=(connection_socket,))
         client_handler.start()  # スレッドを開始
-    
 if __name__ == '__main__':
+    
+    
+    
