@@ -336,7 +336,10 @@ def interact_with_client(s):
         s.close()
     elif word_list[0] == 'DEL':
         for i in range(6):
-            os.remove('{}.dat'.format(i))  
+            try:
+                os.remove('{}.dat'.format(i))  
+            except:
+                break
         s.close()
     
     else:

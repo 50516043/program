@@ -252,7 +252,6 @@ def send_del():
         s = socket(AF_INET, SOCK_STREAM)
         s.connect((hostlist2[i], ft_port))
         s.send('DEL \n'.encode())
-        s.send(sentence.encode())
         s.close()
     
 def main():#main
