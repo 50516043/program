@@ -285,20 +285,20 @@ def interact_with_client(s):
             if nextpass != None:
                 print("next")
                 SEND_FILE_request_next(nextpass,fn)
-            #elif fn == '{}.dat'.format(5):
-            else:
-                for i in range(tmp_dev):
-                    if os.path.isfile('{}.dat'.format(i)):
-                        continue
-                    else:
-                        break
+            elif fn == '{}.dat'.format(10):
+            #else:
+             #   for i in range(tmp_dev):
+              #      if os.path.isfile('{}.dat'.format(i)):
+               #         continue
+                #    else:
+                 #       break
                 
-                if i == tmp_dev-1:
-                    sentence = "ALL FILE RECEIVED \n"
-                    print(sentence)
-                    client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-                    client_socket.connect((clienthost, cl_port))
-                    client_socket.send(sentence.encode())
+                #if i == tmp_dev-1:
+                sentence = "ALL FILE RECEIVED \n"
+                print(sentence)
+                client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+                client_socket.connect((clienthost, cl_port))
+                client_socket.send(sentence.encode())
                 
         elif word_list[1] == 'PASS':
             print('SEND_PASS_Request')
