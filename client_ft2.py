@@ -285,12 +285,6 @@ def main():#main
     GET_FILE_request(sys.argv,client_socket)
     #client_socket.close()  
     
-    s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-    s.connect((server_name, ft_port))  # サーバのソケットに接続する
-    s.send('GETTIME \n'.encode())
-    get_sentence = receive_data2(s)
-    get_sentence = receive_data2(s)
-    s.close()
     #rint(get_sentence)
     client_socket.close()
     
@@ -319,6 +313,12 @@ def main():#main
     f = open(filename,'w')
     f.write(data)
     f.close()
+    
+    s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+    s.connect((server_name, ft_port))  # サーバのソケットに接続する
+    s.send('GETTIME \n'.encode())
+    get_sentence = receive_data2(s)
+    s.close()
     
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, server_port))  # サーバのソケットに接続する
