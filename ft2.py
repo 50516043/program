@@ -275,7 +275,6 @@ def interact_with_client(s):
         s.close()
         
     elif word_list[0] == 'SEND':#SEND FILE [filename]
-        print((tmp_dev-2))
         if word_list[1] == 'FILE':
             print('SEND_FILE_Request')
             print(">FILE受信中...")
@@ -286,12 +285,14 @@ def interact_with_client(s):
             if nextpass != None:
                 print("next")
                 SEND_FILE_request_next(nextpass,fn)
-            elif fn == '{}.dat'.format(5):
+            #elif fn == '{}.dat'.format(5):
+            elif os.path.isfile('0.dat')and os.path.isfile('1.dat')and os.path.isfile('2.dat') and os.path.isfile('3.dat')and os.path.isfile('4.dat')and os.path.isfile('5.dat'):
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
                 client_socket.connect((clienthost, cl_port))
                 client_socket.send(sentence.encode())
+            else:
                 
         elif word_list[1] == 'PASS':
             print('SEND_PASS_Request')
