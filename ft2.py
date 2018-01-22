@@ -20,7 +20,8 @@ cl_port = 54901
 server_port = 54900  ##ポート番号
 res_str_get = ''
 dev = 5
-tmp_dev = 0
+tmp_dev = 6
+
 def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
     response_server = bytearray()
     while True:
@@ -285,7 +286,7 @@ def interact_with_client(s):
             if nextpass != None:
                 print("next")
                 SEND_FILE_request_next(nextpass,fn)
-            elif fn == '{}.dat'.format(tmp_dev-2):
+            elif fn == '{}.dat'.format(6-1):
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
