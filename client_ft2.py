@@ -309,12 +309,10 @@ def main():#main
             print(ii)
             data += f0.read()
             f0.close()
-            ii+=1
+            ii += 1
         except:
             break
-    
-    for i in range(ii):
-        os.remove('{}.dat'.format(i))        
+           
     
     f = open(filename,'w')
     f.write(data)
@@ -335,7 +333,8 @@ def main():#main
     passtime = int(timelist2[0])*60*60+int(timelist2[1])*60+int(timelist2[2])-(int(timelist1[0])*60*60+int(timelist1[1])*60+int(timelist1[2]))
     
     print('Tile transfer finished: Transmission time: {} sec'.format(passtime))
-    
+    for i in range(ii):
+        os.remove('{}.dat'.format(i)) 
     
 if __name__ == '__main__':
      main()
