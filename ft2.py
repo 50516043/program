@@ -19,8 +19,8 @@ filename = ''
 cl_port = 54901
 server_port = 54900  ##ポート番号
 res_str_get = ''
-#dev = 5
-#tmp_dev = 5
+dev = 5
+tmp_dev = 6
 
 def receive_data(client_socket):#データ受信関数,受信したデータの長さが0のとき終了
     response_server = bytearray()
@@ -177,7 +177,7 @@ def get_request_ft(word_list,client_socket):
     sentence = []
     i = 0
     global tmp_dev
-    packet_size = int(max_size/5)
+    packet_size = int(max_size/dev)
     while True:
         j = i
         i += packet_size
@@ -245,7 +245,7 @@ def band_width2(s):#帯域幅計算
     print('band_width2')
     sentence = 'OK \n'
     s.send(sentence.encode())
-    for i in range(500):
+    for i in range(50000):
         sentence2 = '{}'.format(1)
         s.send(sentence2.encode())
     s.send('\n'.encode())
@@ -285,15 +285,8 @@ def interact_with_client(s):
             if nextpass != None:
                 print("next")
                 SEND_FILE_request_next(nextpass,fn)
-            elif fn == '{}.dat'.format(5):
-            #else:
-             #   for i in range(tmp_dev):
-              #      if os.path.isfile('{}.dat'.format(i)):
-               #         continue
-                #    else:
-                 #       break
-                
-                #if i == tmp_dev-1:
+            #elif fn == '{}.dat'.format(5):
+            elif os.path.isfile('0.dat')and os.path.isfile('1.dat')and os.path.isfile('2.dat') and os.path.isfile('3.dat')and os.path.isfile('4.dat')and os.path.isfile('5.dat'):
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
@@ -342,11 +335,11 @@ def interact_with_client(s):
         s.send(res_str_get.encode())
         s.close()
     elif word_list[0] == 'DEL':
-        for i in range(10):
+        for i in range(6):
             try:
                 os.remove('{}.dat'.format(i))  
             except:
-                pass
+                break
         s.close()
     
     else:
@@ -372,4 +365,3 @@ def main():
         client_handler.start()  # スレッドを開始
     
 if __name__ == '__main__':
-    main()
