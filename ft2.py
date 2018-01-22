@@ -292,7 +292,6 @@ def interact_with_client(s):
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
                 client_socket.connect((clienthost, cl_port))
                 client_socket.send(sentence.encode())
-            else:
                 
         elif word_list[1] == 'PASS':
             print('SEND_PASS_Request')
