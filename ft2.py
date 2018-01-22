@@ -83,10 +83,9 @@ def get_request_client(input_list,client_socket,getarg):#GETリクエスト
         #sentence = 'GET rnd50K.txt aaa PARTIAL 0 100\n'
         print("[TO server]\n" + sentence)
         client_socket.send(sentence.encode())#サーバーへリクエスト
-        res_str = receive_data2(client_socket)#サーバーからの応答を受信
-        if input_list[3] ==0:
-            res_str_get = res_str
-        print('[FROM server]\n' + res_str)
+        res_str_get = receive_data2(client_socket)#サーバーからの応答を受信
+        res_str = res_str_get
+        print('[FROM server]\n' + res_str_get)
         
         if(res_str.split()[0] == 'OK'):#OK
             ALL_file_data = receive_data(client_socket)#ファイルデータ受信
@@ -291,7 +290,7 @@ def interact_with_client(s):
                 sentence = "ALL FILE RECEIVED \n"
                 print(sentence)
                 client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-                client_socket.connect(('localhost', cl_port))
+                client_socket.connect((clienthost, cl_port))
                 client_socket.send(sentence.encode())
                 
         elif word_list[1] == 'PASS':
@@ -334,7 +333,7 @@ def interact_with_client(s):
         s.close()
     elif word_list[0] == 'GETTIME':
         s.send(res_str_get.encode())
-        print(res_str_get)
+        print(res_str_get
         s.close()
     elif word_list[0] == 'DEL':
         for i in range(6):
