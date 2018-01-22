@@ -177,7 +177,7 @@ def get_request_ft(word_list,client_socket):
     sentence = []
     i = 0
     global tmp_dev
-    packet_size = int(max_size/tmp_dev)
+    packet_size = int(max_size/5)
     while True:
         j = i
         i += packet_size
@@ -285,7 +285,7 @@ def interact_with_client(s):
             if nextpass != None:
                 print("next")
                 SEND_FILE_request_next(nextpass,fn)
-            elif fn == '{}.dat'.format(10):
+            elif fn == '{}.dat'.format(5):
             #else:
              #   for i in range(tmp_dev):
               #      if os.path.isfile('{}.dat'.format(i)):
@@ -342,7 +342,7 @@ def interact_with_client(s):
         s.send(res_str_get.encode())
         s.close()
     elif word_list[0] == 'DEL':
-        for i in range(20):
+        for i in range(5):
             try:
                 os.remove('{}.dat'.format(i))  
             except:
