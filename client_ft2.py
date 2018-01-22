@@ -283,13 +283,13 @@ def main():#main
     client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
     client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
     GET_FILE_request(sys.argv,client_socket)
-    client_socket.close()  
+    #client_socket.close()  
     
-    s = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
-    s.connect((server_name, ft_port))  # サーバのソケットに接続する
-    s.send('GETTIME \n'.encode())
-    get_sentence = receive_data2(s)
-    s.close()
+    #client_socket = socket(AF_INET, SOCK_STREAM)  # ソケットを作る
+    #client_socket.connect((server_name, ft_port))  # サーバのソケットに接続する
+    client_socket.send('GETTIME \n'.encode())
+    get_sentence = receive_data2(client_socket)
+    client_socket.close()
     #print(get_sentence)
     
     s = socket(AF_INET, SOCK_STREAM)
